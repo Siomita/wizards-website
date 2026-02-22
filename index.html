@@ -3,29 +3,1998 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validation Sprint</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>The Validation Sprint — Know If It'll Sell Before You Build It</title>
+    <meta name="description" content="Stop building things nobody wants to buy. The 7-Day Validation Sprint tells you if your idea will sell before you build it.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0d0d0d;
+            --bg-secondary: #141414;
+            --bg-tertiary: #1a1a1a;
+            --border-color: #2a2a2a;
+            --border-light: #333;
+            --text-primary: #f0ede8;
+            --text-secondary: #9a9a9a;
+            --text-muted: #6b6b6b;
+            --accent: #e8ff47;
+            --accent-hover: #f5ff6e;
+            --accent-dim: rgba(232,255,71,0.12);
+            --red: #ff4747;
+            --green: #47ff8a;
+            --font-primary: 'Inter', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* SVG Icon Visibility Fixes */
+        svg {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        /* Yellow buttons need dark icons */
+        .btn-primary svg {
+            stroke: #0d0d0d !important;
+        }
+        
+        /* Dark background areas need yellow/white icons */
+        .quiz-chip svg {
+            stroke: var(--accent) !important;
+        }
+        
+        .sec-chip svg {
+            stroke: var(--accent) !important;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .container-narrow {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 24px;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .nav-container {
+                display: grid;
+                grid-template-columns: 44px 1fr auto;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .nav-container .logo {
+                justify-self: center;
+                text-align: center;
+            }
+            
+            .nav-container .nav-cta {
+                justify-self: end;
+            }
+        }
+
+        .logo {
+            font-family: var(--font-primary);
+            font-weight: 800;
+            font-size: 17px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: #0d0d0d;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: var(--font-primary);
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #0d0d0d;
+            padding: 18px 36px;
+            font-size: 16px;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232,255,71,0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero .container-narrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(ellipse at center, rgba(232,255,71,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: var(--accent-dim);
+            border: 1px solid rgba(232,255,71,0.25);
+            border-radius: 4px;
+            padding: 6px 12px;
+        }
+
+        .tag::before {
+            content: '//';
+            color: rgba(232,255,71,0.4);
+        }
+
+        .eyebrow-pill {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dot-live {
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero-title {
+            font-family: var(--font-primary);
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .hero-title .line-yellow {
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            font-size: 19px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            max-width: 580px;
+            margin-bottom: 16px;
+        }
+
+        .hero-sub strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .hero-reframe {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--accent);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .hero-reframe::before {
+            content: '>';
+            opacity: 0.5;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .hero-trust-row {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .trust-chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .trust-chip::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Pain Section */
+        .pain-section {
+            padding: 80px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+
+        /* Quiz CTA Section */
+        .quiz-cta-section {
+            padding: 80px 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .quiz-cta-inner {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 48px;
+            align-items: center;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .quiz-cta-content {
+            text-align: left;
+        }
+
+        .quiz-cta-title {
+            font-family: var(--font-primary);
+            font-size: clamp(28px, 3.5vw, 40px);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .quiz-cta-title .accent {
+            color: var(--accent);
+        }
+
+        .quiz-cta-body {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 24px;
+            max-width: 480px;
+        }
+
+        .quiz-cta-features {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .quiz-chip {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quiz-chip img {
+            filter: brightness(0) saturate(100%) invert(77%) sepia(67%) saturate(538%) hue-rotate(11deg) brightness(103%) contrast(101%);
+            max-width: 100%;
+            height: auto;
+            display: inline-block;
+        }
+
+        /* Mobile image fixes - FORCE DISPLAY */
+        @media (max-width: 900px) {
+            img {
+                max-width: 100% !important;
+                height: auto !important;
+                display: inline-block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            
+            .btn-primary img,
+            .submit-btn img {
+                max-width: 20px !important;
+                max-height: 20px !important;
+                display: inline-block !important;
+            }
+            
+            .sec-chip img {
+                max-width: 12px !important;
+                max-height: 12px !important;
+                display: inline-block !important;
+            }
+            
+            .quiz-chip img {
+                max-width: 14px !important;
+                max-height: 14px !important;
+                display: inline-block !important;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            img {
+                display: inline-block !important;
+                visibility: visible !important;
+            }
+        }
+
+        .quiz-cta-action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+        }
+
+        .btn-quiz {
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .quiz-cta-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        @media (max-width: 768px) {
+            .quiz-cta-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .quiz-cta-content {
+                text-align: center;
+            }
+
+            .quiz-cta-body {
+                max-width: 100%;
+            }
+
+            .quiz-cta-features {
+                justify-content: center;
+            }
+        }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .pain-title {
+            font-family: var(--font-primary);
+            font-size: clamp(28px, 3.5vw, 42px);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+
+        .pain-title .red {
+            color: var(--red);
+        }
+
+        .pain-body {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .pain-body p + p {
+            margin-top: 16px;
+        }
+
+        .pain-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 780px;
+            margin: 48px auto 0;
+        }
+
+        .pain-list li {
+            display: flex;
+            gap: 14px;
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .pain-list .icon {
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            color: var(--accent);
+        }
+
+        /* Mechanism Section */
+        .mechanism-section {
+            padding: 100px 0;
+        }
+
+        .mech-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .mech-title {
+            font-family: var(--font-primary);
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .mech-title .accent {
+            color: var(--accent);
+        }
+
+        .mech-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .days-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .day-row {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .day-row:hover {
+            border-color: var(--border-light);
+        }
+
+        .day-num {
+            background: var(--bg-tertiary);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 20px 12px;
+        }
+
+        .day-num .label {
+            font-family: var(--font-mono);
+            font-size: 9px;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .day-num .number {
+            font-family: var(--font-primary);
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .day-content {
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .day-icon {
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .day-text h3 {
+            font-family: var(--font-primary);
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .day-text p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .day-row.highlight-day {
+            border-color: rgba(232,255,71,0.3);
+        }
+
+        .day-row.highlight-day .day-num {
+            background: var(--accent-dim);
+        }
+
+        /* Proof Section */
+        .proof-section {
+            padding: 100px 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .proof-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .proof-title {
+            font-family: var(--font-primary);
+            font-size: clamp(28px, 3.5vw, 44px);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .proof-sub {
+            font-size: 16px;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .proof-sub::before {
+            content: '// ';
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .testimonials-bottom {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .tcard {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            transition: border-color 0.2s;
+        }
+
+        .tcard:hover {
+            border-color: var(--border-light);
+        }
+
+        .tcard.featured {
+            border-color: rgba(232,255,71,0.25);
+            background: linear-gradient(135deg, rgba(232,255,71,0.03) 0%, var(--bg-primary) 60%);
+        }
+
+        .tcard-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tcard-id {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+        }
+
+        .tcard-result {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--accent);
+            background: var(--accent-dim);
+            border: 1px solid rgba(232,255,71,0.2);
+            border-radius: 3px;
+            padding: 3px 8px;
+        }
+
+        .tcard-body {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .tcard-body em {
+            font-style: normal;
+            color: var(--text-primary);
+        }
+
+        .tcard-footer {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .tcard-footer strong {
+            color: var(--text-secondary);
+        }
+
+        /* Objections Section */
+        .objections-section {
+            padding: 100px 0;
+        }
+
+        .obj-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .obj-title {
+            font-family: var(--font-primary);
+            font-size: clamp(26px, 3vw, 40px);
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .obj-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .obj-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 24px 28px;
+        }
+
+        .obj-q {
+            font-family: var(--font-primary);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .obj-q .qmark {
+            color: var(--accent);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .obj-a {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        /* Guarantee Section */
+        .guarantee-section {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .guarantee-inner {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 48px;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .guarantee-badge {
+            width: 140px;
+            height: 140px;
+            border-radius: 12px;
+            border: 3px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: var(--accent-dim);
+            flex-shrink: 0;
+            text-align: center;
+            padding: 16px;
+        }
+
+        .guarantee-badge .big {
+            font-family: var(--font-primary);
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .guarantee-badge .small {
+            font-family: var(--font-mono);
+            font-size: 9px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .guarantee-text h3 {
+            font-family: var(--font-primary);
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .guarantee-text p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .guarantee-mono {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--accent);
+            margin-top: 16px;
+        }
+
+        .guarantee-mono::before {
+            content: '> ';
+        }
+
+        /* Checkout Section */
+        .checkout-section {
+            padding: 100px 0 120px;
+        }
+
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .checkout-title {
+            font-family: var(--font-primary);
+            font-size: clamp(30px, 4vw, 50px);
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.1;
+        }
+
+        .checkout-title .accent {
+            color: var(--accent);
+        }
+
+        .checkout-sub {
+            font-size: 17px;
+            color: var(--text-muted);
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 40px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .checkout-summary {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 32px;
+        }
+
+        .what-you-get {
+            margin-bottom: 28px;
+        }
+
+        .what-you-get h4 {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .get-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .get-list li {
+            display: flex;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .get-list .check {
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .price-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .price-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .price-label::before {
+            content: '// ';
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        .price-main {
+            font-family: var(--font-primary);
+            font-size: 54px;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .price-old {
+            font-size: 20px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .price-note {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--accent);
+        }
+
+        .price-note::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: url('Downloads/bolt.png') no-repeat center;
+            background-size: contain;
+            margin-right: 4px;
+            vertical-align: middle;
+            filter: brightness(0) saturate(100%) invert(77%) sepia(67%) saturate(538%) hue-rotate(11deg) brightness(103%) contrast(101%);
+        }
+
+        .security-row {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .sec-chip {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .checkout-form-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 32px;
+        }
+
+        .checkout-form-box h3 {
+            font-family: var(--font-primary);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .checkout-form-box .form-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 13px 16px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 7px;
+            font-family: var(--font-primary);
+            font-size: 15px;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent);
+        }
+
+        .card-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .card-row input {
+            padding: 13px 16px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 7px;
+            font-family: var(--font-primary);
+            font-size: 15px;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .card-row input:focus {
+            border-color: var(--accent);
+        }
+
+        .total-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            margin: 16px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .total-bar span:first-child {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .total-bar span:last-child {
+            font-family: var(--font-primary);
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--accent);
+            color: #0d0d0d;
+            font-family: var(--font-primary);
+            font-size: 17px;
+            font-weight: 800;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            letter-spacing: 0.01em;
+            transition: all 0.2s;
+            margin-bottom: 12px;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(232,255,71,0.25);
+        }
+
+        .whop-link {
+            display: block;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .whop-link:hover {
+            border-color: var(--border-light);
+            color: var(--text-secondary);
+        }
+
+        .whop-link::before {
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background: url('Downloads/lock.png') no-repeat center;
+            background-size: contain;
+            margin-right: 6px;
+            vertical-align: middle;
+            filter: brightness(0) saturate(100%) invert(77%) sepia(67%) saturate(538%) hue-rotate(11deg) brightness(103%) contrast(101%);
+        }
+
+        .whop-link::after {
+            content: ' →';
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 28px;
+            left: 28px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 300px;
+            z-index: 200;
+            animation: slideUp 0.4s ease forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .toast-avatar {
+            width: 36px;
+            height: 36px;
+            background: url('Downloads/Whop logo.jpg') no-repeat center;
+            background-size: cover;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .toast-text {
+            flex: 1;
+        }
+
+        .toast-name {
+            font-family: var(--font-primary);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1px;
+        }
+
+        .toast-action {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .toast-action span {
+            color: var(--accent);
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0 4px;
+            align-self: flex-start;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-primary);
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .footer-tagline {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .footer-tagline::before {
+            content: '// ';
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-secondary);
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .pain-grid,
+            .testimonials-grid,
+            .obj-grid,
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-bottom {
+                grid-template-columns: 1fr;
+            }
+
+            .guarantee-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .guarantee-badge {
+                margin: 0 auto;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .day-row {
+                grid-template-columns: 60px 1fr;
+            }
+
+            .day-num {
+                padding: 16px 8px;
+            }
+
+            .day-num .number {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 60px 0 40px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary {
+                width: 100%;
+            }
+
+            .hero-trust-row {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .nav-cta {
+                font-size: 10px;
+                padding: 8px 12px;
+            }
+
+            .container,
+            .container-narrow {
+                padding: 0 16px;
+            }
+
+            section {
+                padding: 60px 0 !important;
+            }
+
+            .toast {
+                left: 16px;
+                right: 16px;
+                max-width: none;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            gap: 6px;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 900px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-secondary);
+                padding: 20px;
+                box-shadow: var(--shadow-lg);
+                border-top: 1px solid var(--border-color);
+                z-index: 999;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to the Validation Sprint</h1>
-    </header>
-    <main>
-        <section>
-            <h2>About Us</h2>
-            <p>This is the Validation Sprint website where we conduct various tests and validations.</p>
-        </section>
-        <section>
-            <h2>Our Services</h2>
-            <ul>
-                <li>Validation Testing</li>
-                <li>Data Verification</li>
-                <li>Quality Assurance</li>
-            </ul>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2026 Validation Sprint. All rights reserved.</p>
-    </footer>
+
+<!-- NAV -->
+<nav class="navbar">
+    <div class="nav-container">
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a href="#" class="logo">The <span>Validation</span> Sprint</a>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#system">The Sprint</a></li>
+            <li><a href="#proof">Results</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a href="https://whop.com/infowizards/the-7-day-idea-proof-lab/" class="nav-cta" target="_blank" rel="noopener">Get Access — $37</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container-narrow">
+        <div class="hero-eyebrow">
+            <span class="tag">Digital Product</span>
+            <span class="eyebrow-pill">
+                <span class="dot-live"></span>
+                200+ sprinters already running
+            </span>
+        </div>
+
+        <h1 class="hero-title">
+            Stop building things<br>
+            <span class="line-yellow">nobody wants to buy.</span>
+        </h1>
+
+        <p class="hero-sub">
+            The daily validation system that shows you if people will actually pay you for your idea — before you spend months creating something nobody wants.
+        </p>
+
+        <div class="hero-reframe">
+            Stop guessing. Start knowing. Get paid before you build.
+        </div>
+
+        <div class="hero-actions">
+                <a href="https://whop.com/infowizards/the-7-day-idea-proof-lab/" class="btn btn-primary" target="_blank" rel="noopener"><img src="Downloads/lock.png" alt="" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle; display: inline-block;"> Get Instant Access — $37</a>
+        </div>
+
+        <div class="hero-trust-row">
+            <span class="trust-chip">7 days. One clear answer.</span>
+            <span class="trust-chip">No audience needed</span>
+            <span class="trust-chip">30-Day Money Back</span>
+        </div>
+    </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain-section">
+    <div class="container">
+        <div class="pain-grid">
+            <div>
+                <div class="section-label">The problem nobody talks about</div>
+                <h2 class="pain-title">You're not stuck because you lack ideas.<br>You're stuck because you <span class="red">never know which one to bet on.</span></h2>
+            </div>
+            <div class="pain-body">
+                <p>You scroll X, TikTok, Reddit. You absorb content for hours. You've got 5 product ideas saved in your Notes app — a fitness course, a notion template, an ebook, maybe a newsletter.</p>
+                <p>But you never start. And if you do, you spend weeks building something, post it online, and get nothing back. Not even feedback. Just silence.</p>
+                <p>That's not a motivation problem. That's a <strong>validation problem.</strong> You're building first and hoping people want it. The sprint flips that.</p>
+            </div>
+        </div>
+
+        <ul class="pain-list">
+            <li>
+                <span class="icon">•</span>
+                <span>You've started multiple products in the past year and finished zero — always stopping halfway because you're not sure if it'll work.</span>
+            </li>
+            <li>
+                <span class="icon">•</span>
+                <span>You consume hours of content about making money online but feel more confused every week, not less.</span>
+            </li>
+            <li>
+                <span class="icon">•</span>
+                <span>You've launched something before and got zero sales — and you still don't know why it flopped or what to fix.</span>
+            </li>
+            <li>
+                <span class="icon">•</span>
+                <span>You have ideas, but no system to know which one people will actually pay for — so you keep all of them alive as "backup plans" and commit to none.</span>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- QUIZ CTA SECTION -->
+<section class="quiz-cta-section">
+    <div class="container">
+        <div class="quiz-cta-inner">
+            <div class="quiz-cta-content">
+                <div class="section-label">Not sure where to start?</div>
+                <h2 class="quiz-cta-title">Take a <span class="accent">90-second quiz</span> to find your path</h2>
+                <p class="quiz-cta-body">Answer 12 quick questions about your experience level, goals, and current situation. We'll show you exactly which sprint track is right for you — beginner, growth, or advanced.</p>
+                <div class="quiz-cta-features">
+                    <span class="quiz-chip"><img src="Downloads/bolt.png" alt="" style="width: 14px; height: 14px; margin-right: 6px; vertical-align: middle; display: inline-block;"> Takes 90 seconds</span>
+                    <span class="quiz-chip"><img src="Downloads/bullseye-arrow.png" alt="" style="width: 14px; height: 14px; margin-right: 6px; vertical-align: middle; display: inline-block;"> Personalized results</span>
+                    <span class="quiz-chip"><img src="Downloads/chart-line-up.png" alt="" style="width: 14px; height: 14px; margin-right: 6px; vertical-align: middle; display: inline-block;"> Instant path match</span>
+                </div>
+            </div>
+            <div class="quiz-cta-action">
+                <a href="quiz.html" class="btn btn-primary btn-quiz" style="touch-action: manipulation; -webkit-tap-highlight-color: transparent; cursor: pointer;" onclick="window.location.href='quiz.html'; return true;"><img src="Downloads/bullseye-arrow.png" alt="" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle; display: inline-block;"> Take the Quiz — Find My Path</a>
+                <p class="quiz-cta-note">Or keep scrolling to see the full sprint framework</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MECHANISM -->
+<section class="mechanism-section" id="system">
+    <div class="container">
+        <div class="mech-header">
+            <div class="section-label">The 7-Day Sprint Framework</div>
+            <h2 class="mech-title">Most Product Validation Takes Months<br><span class="accent">Get Your Answer in One Week.</span></h2>
+            <p class="mech-subtitle">The daily validation system that shows you if people will actually pay you for your idea — before you spend months creating something nobody wants.</p>
+        </div>
+
+        <div class="days-grid">
+            <div class="day-row">
+                <div class="day-num">
+                    <span class="label">Day</span>
+                    <span class="number">01</span>
+                </div>
+                <div class="day-content">
+                    <div class="day-text">
+                        <h3>Pick One. Kill the Rest.</h3>
+                        <p>Stop keeping 5 ideas alive as "backup plans." Day 1 forces you to commit to the idea most likely to sell — using a specific scoring method that eliminates wishful thinking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-row">
+                <div class="day-num">
+                    <span class="label">Day</span>
+                    <span class="number">02</span>
+                </div>
+                <div class="day-content">
+                    <div class="day-text">
+                        <h3>Wallet Research — Find Real Buyers First</h3>
+                        <p>Find where your buyers actually hang out online. Learn what language they use, what they're desperately searching for, and what they've already paid for. This is your unfair advantage.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-row">
+                <div class="day-num">
+                    <span class="label">Day</span>
+                    <span class="number">03</span>
+                </div>
+                <div class="day-content">
+                    <div class="day-text">
+                        <h3>Talk to 10 Strangers</h3>
+                        <p>You'll send 20 DMs using our exact script. This is how you find out if people actually have the problem you're solving — and what they'd pay to fix it. No audience required.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-row">
+                <div class="day-num">
+                    <span class="label">Day</span>
+                    <span class="number">04</span>
+                </div>
+                <div class="day-content">
+                    <div class="day-text">
+                        <h3>Shape the Offer From Real Feedback</h3>
+                        <p>Use what people told you in their own words to build an offer that solves the exact pain they described. Your product's outline comes from your future buyers — not your assumptions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-row">
+                <div class="day-num">
+                    <span class="label">Day</span>
+                    <span class="number">05</span>
+                </div>
+                <div class="day-content">
+                    <div class="day-text">
+                        <h3>Price It Right — Without Undercharging</h3>
+                        <p>Most people price way too low. Day 5 teaches you how to test price points before you commit — so you stop leaving money on the table by charging $10 for something worth $47.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-row highlight-day">
+                <div class="day-num">
+                    <span class="label">Day</span>
+                    <span class="number">06</span>
+                </div>
+                <div class="day-content">
+                    <div class="day-text">
+                        <h3>Pre-Sell Before You Build</h3>
+                        <p>Send a simple pre-sale offer to the people who showed interest. The goal: get at least one person to pay before you've built anything. Money in before a single piece of content is created.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-row highlight-day">
+                <div class="day-num">
+                    <span class="label">Day</span>
+                    <span class="number">07</span>
+                </div>
+                <div class="day-content">
+                    <div class="day-text">
+                        <h3>Validated or Pivot — Either Way You Win</h3>
+                        <p>Review your data. If people paid: you've got a validated product ready to build. If not: you get a clear signal to pivot — saving you months of wasted effort on the wrong idea.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof-section" id="proof">
+    <div class="container">
+        <div class="proof-header">
+            <div class="section-label">Real results from real people</div>
+            <h2 class="proof-title">What happens when you actually validate first</h2>
+            <p class="proof-sub">unfiltered. unedited. unsolicited.</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="tcard featured">
+                <div class="tcard-meta">
+                    <span class="tcard-id">SPRINT RESULT #001</span>
+                    <span class="tcard-result">$127 / pivot success</span>
+                </div>
+                <p class="tcard-body">"Bought this guide. Day 7: zero pre-sales. Found the pivot framework in module 4. Stopped guessing what people wanted. Started validating. <em>Day 14: 3 pre-sales, $127 in my account. Course still isn't built.</em> Learning when to pivot > grinding on the wrong thing."</p>
+                <div class="tcard-footer">
+                    <div>► OPERATOR: <strong>9-5 Employee</strong></div>
+                    <div>► STATUS: Validated after pivot</div>
+                </div>
+            </div>
+
+            <div class="tcard">
+                <div class="tcard-meta">
+                    <span class="tcard-id">SPRINT RESULT #002</span>
+                    <span class="tcard-result">$500 pre-orders</span>
+                </div>
+                <p class="tcard-body">"Used to waste WEEKS building random stuff nobody wanted. Tried actually talking to people first this time. <em>Got $500 in pre-orders and now I know for sure people want this.</em> It feels so different when you're not just hoping someone might buy."</p>
+                <div class="tcard-footer">
+                    <div>► OPERATOR: <strong>Recent Graduate</strong></div>
+                    <div>► STATUS: Currently building</div>
+                </div>
+            </div>
+
+            <div class="tcard">
+                <div class="tcard-meta">
+                    <span class="tcard-id">SPRINT RESULT #003</span>
+                    <span class="tcard-result">14 pre-orders / $378</span>
+                </div>
+                <p class="tcard-body">"Kept second-guessing if anyone would want my ebook. Spent a few days DMing people in writing communities asking about their struggles. <em>Pre-sold it to 14 people for $27 each before I even finished the outline.</em> Half of them asked when they could get it because they needed it ASAP."</p>
+                <div class="tcard-footer">
+                    <div>► OPERATOR: <strong>Anonymous</strong></div>
+                    <div>► STATUS: 14 pre-orders, building now</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonials-bottom">
+            <div class="tcard">
+                <div class="tcard-meta">
+                    <span class="tcard-id">SPRINT RESULT #004</span>
+                    <span class="tcard-result">$282 before building</span>
+                </div>
+                <p class="tcard-body">"I'm in my third year at uni and had this ebook idea about study systems since October. Just sat there. Did the sprint over spring break — was gonna charge $10 but ended up testing $47. <em>6 people pre-ordered. $282 for something that was literally just sitting in my Google Docs.</em> Makes better money than shelving books at the library and I don't have to ask permission to take a piss."</p>
+                <div class="tcard-footer">
+                    <div>► OPERATOR: <strong>Uni student, Year 3</strong></div>
+                    <div>► STATUS: Built it over a weekend, shipped</div>
+                </div>
+            </div>
+
+            <div class="tcard featured">
+                <div class="tcard-meta">
+                    <span class="tcard-id">SPRINT RESULT #005</span>
+                    <span class="tcard-result">$450 upfront / 3 paid</span>
+                </div>
+                <p class="tcard-body">"I'm 21 and started like 12 different products in the past year. Fitness course, dropshipping ebook, Notion templates... never finished one. Day 1 made me pick ONE idea instead of keeping 5 alive as backup plans. <em>Day 5 I talked to 40 people. 8 said yes. 3 paid upfront — $450. First product I've actually finished.</em> The sprint doesn't let you bullshit yourself with 'I'm still working on it' — you find out in a week if people want it or not."</p>
+                <div class="tcard-footer">
+                    <div>► OPERATOR: <strong>Anonymous, age 21</strong></div>
+                    <div>► STATUS: Shipped. Working on v2.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- OBJECTIONS / FAQ -->
+<section class="objections-section" id="faq">
+    <div class="container">
+        <div class="obj-header">
+            <div class="section-label">Honest answers</div>
+            <h2 class="obj-title">You probably have one of these questions</h2>
+        </div>
+
+        <div class="obj-grid">
+            <div class="obj-card">
+                <div class="obj-q"><span class="qmark">Q:</span> I have zero followers. Will this work for me?</div>
+                <p class="obj-a">Yes — this is literally built for that. The whole system is designed around talking to strangers in communities where your buyers already hang out: Reddit, X, Discord, TikTok comments. You don't need a following. You need the right conversations.</p>
+            </div>
+
+            <div class="obj-card">
+                <div class="obj-q"><span class="qmark">Q:</span> What if my idea doesn't validate?</div>
+                <p class="obj-a">That's actually the best outcome — because you find out in 7 days instead of 6 months. The sprint gives you a clear pivot framework so you know exactly what to adjust. A failed validation is free market research. A failed product launch is just expensive failure.</p>
+            </div>
+
+            <div class="obj-card">
+                <div class="obj-q"><span class="qmark">Q:</span> I'm not a "business person." Is this too advanced?</div>
+                <p class="obj-a">No prior experience needed. Each day has one task and exact scripts to follow. If you can send a DM and read a response, you can run this sprint. The hardest part is committing to one idea on Day 1 — everything else follows a clear path.</p>
+            </div>
+
+            <div class="obj-card">
+                <div class="obj-q"><span class="qmark">Q:</span> How much time does it actually take per day?</div>
+                <p class="obj-a">About 1–2 hours per day. Some days (like the research days) run a bit longer. But most days have a single focused task that you can complete in a lunch break or an evening. The sprint is designed to fit around your life — not replace it.</p>
+            </div>
+
+            <div class="obj-card">
+                <div class="obj-q"><span class="qmark">Q:</span> What kind of products can I validate with this?</div>
+                <p class="obj-a">Any digital product — ebooks, online courses, templates, coaching, communities, newsletters, prompt packs, whatever. The validation framework doesn't care what you're building. It's about finding buyers first. The product comes second.</p>
+            </div>
+
+            <div class="obj-card">
+                <div class="obj-q"><span class="qmark">Q:</span> Why is this only $37? Is it actually good?</div>
+                <p class="obj-a">It's $37 because the goal is to remove every excuse not to start. This isn't a massive course padded with filler. It's a focused 7-day system that has one job: tell you if your idea will sell before you waste months on it. One pre-sale covers the cost 5x over.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee-section">
+    <div class="container">
+        <div class="guarantee-inner">
+            <div class="guarantee-badge">
+                <span class="big">30</span>
+                <span class="small">Day Guarantee</span>
+            </div>
+            <div class="guarantee-text">
+                <div class="section-label">Zero risk</div>
+                <h3>Run the sprint. If you're still lost, you pay nothing.</h3>
+                <p>Go through all 7 days. Do the tasks. If after 30 days you still don't have a clear direction for how to validate a product idea before building — email us for a full refund. No hoops to jump through.</p>
+                <p>You keep everything: all the day-by-day tasks, the DM scripts, the validation templates, and the research methods.</p>
+                <div class="guarantee-mono">Get a validated idea, or get your money back. That's the deal.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CHECKOUT -->
+<section class="checkout-section" id="checkout">
+    <div class="container">
+        <div class="checkout-header">
+            <div class="section-label">Secure access portal</div>
+            <h2 class="checkout-title">7 days from now, you'll know<br>if your idea <span class="accent">actually sells.</span></h2>
+            <p class="checkout-sub">Or you'll have your $37 back. Either way, you win.</p>
+        </div>
+
+        <div class="checkout-grid">
+            <!-- Summary -->
+            <div class="checkout-summary">
+                <div class="what-you-get">
+                    <h4>What you get</h4>
+                    <ul class="get-list">
+                        <li><span class="check">→</span> 7-day sprint framework (day-by-day tasks)</li>
+                        <li><span class="check">→</span> The Wallet Research method — find buyers before building</li>
+                        <li><span class="check">→</span> 20 DM scripts to send to cold strangers</li>
+                        <li><span class="check">→</span> Offer shaping template (built from buyer feedback)</li>
+                        <li><span class="check">→</span> Price testing framework — stop undercharging</li>
+                        <li><span class="check">→</span> Pre-sale script to collect money before you build</li>
+                        <li><span class="check">→</span> Validation checklist — validated or pivot guide</li>
+                        <li><span class="check">→</span> Lifetime access + future updates</li>
+                    </ul>
+                </div>
+
+                <div class="price-block">
+                    <div class="price-label">one-time payment. lifetime access.</div>
+                    <div class="price-row">
+                        <span class="price-main">$37</span>
+                        <span class="price-old">$97</span>
+                    </div>
+                    <div class="price-note">Launch price — goes up soon</div>
+                </div>
+
+                <div class="security-row">
+                    <span class="sec-chip"><img src="Downloads/lock.png" alt="" style="width: 12px; height: 12px; margin-right: 4px; vertical-align: middle; display: inline-block; filter: brightness(0) saturate(100%) invert(77%) sepia(67%) saturate(538%) hue-rotate(11deg) brightness(103%) contrast(101%);"> SSL Secure</span>
+                    <span class="sec-chip"><img src="Downloads/bolt.png" alt="" style="width: 12px; height: 12px; margin-right: 4px; vertical-align: middle; display: inline-block; filter: brightness(0) saturate(100%) invert(77%) sepia(67%) saturate(538%) hue-rotate(11deg) brightness(103%) contrast(101%);"> Instant Access</span>
+                    <span class="sec-chip">🛡️ 30-Day Guarantee</span>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="checkout-form-box">
+                <h3>Get instant access</h3>
+                <p class="form-subtitle">Fill in your details below and you're in.</p>
+
+                <div class="form-group">
+                    <label>Email address</label>
+                    <input type="email" placeholder="you@gmail.com" />
+                </div>
+
+                <div class="form-group">
+                    <label>Card number</label>
+                    <input type="text" placeholder="1234 1234 1234 1234" />
+                </div>
+
+                <div class="card-row form-group">
+                    <input type="text" placeholder="MM / YY" />
+                    <input type="text" placeholder="CVC" />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" placeholder="Promo code (optional)" />
+                </div>
+
+                <div class="total-bar">
+                    <span>Total due today</span>
+                    <span>$37.00</span>
+                </div>
+
+                <button class="submit-btn"><img src="Downloads/lock.png" alt="" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle; display: inline-block;"> Start My Validation Sprint</button>
+
+                <a href="#" class="whop-link">Complete checkout securely on Whop</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">The <span>Validation</span> Sprint</div>
+    <p class="footer-tagline">know if it sells before you build it.</p>
+    <div class="footer-links">
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Contact</a>
+    </div>
+    <p class="footer-copy">© 2026 The Validation Sprint. All rights reserved.</p>
+</footer>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast">
+    <div class="toast-avatar"></div>
+    <div class="toast-text">
+        <div class="toast-name" id="toast-name">Jake M.</div>
+        <div class="toast-action">just started <span>The Validation Sprint</span></div>
+    </div>
+    <button class="toast-close" onclick="document.getElementById('toast').style.display='none'">×</button>
+</div>
+
+<script>
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+
+    // Rotate toast notifications
+    const names = [
+        'Alex R.', 'Jordan K.', 'Marcus T.', 'Priya S.', 'Liam O.',
+        'Sofia C.', 'Noah B.', 'Zara M.', 'Tyler W.', 'Emma L.'
+    ];
+    let idx = 0;
+    const toast = document.getElementById('toast');
+    const toastName = document.getElementById('toast-name');
+
+    setInterval(() => {
+        idx = (idx + 1) % names.length;
+        toastName.textContent = names[idx];
+        toast.style.display = 'flex';
+        toast.style.animation = 'none'        void toast.offsetWidth;
+        toast.style.animation = 'slideUp 0.4s ease forwards';
+    }, 7000);
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+    });
+
+    // Mobile quiz link fix - ensure navigation works on touch devices
+    document.querySelectorAll('a[href="quiz.html"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            console.log('Quiz link clicked - navigating to quiz.html');
+            // Don't prevent default - let the navigation happen
+        });
+        link.addEventListener('touchend', function(e) {
+            console.log('Quiz link touched - navigating to quiz.html');
+            // Don't prevent default on touch end
+        });
+    });
+
+    // Image load debugging
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            console.error('Image failed to load:', this.src);
+        });
+        img.addEventListener('load', function() {
+            console.log('Image loaded successfully:', this.src);
+        });
+    });
+</script>
+
 </body>
 </html>
+
