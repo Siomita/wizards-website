@@ -1053,11 +1053,12 @@
             display: inline-block;
             width: 12px;
             height: 12px;
-            background: url('Downloads/bolt.png') no-repeat center;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23e8ff47' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'%3E%3C/polygon%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
             background-size: contain;
             margin-right: 4px;
             vertical-align: middle;
-            filter: brightness(0) saturate(100%) invert(77%) sepia(67%) saturate(538%) hue-rotate(11deg) brightness(103%) contrast(101%);
         }
 
         .security-row {
@@ -1220,11 +1221,12 @@
             display: inline-block;
             width: 14px;
             height: 14px;
-            background: url('Downloads/lock.png') no-repeat center;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23e8ff47' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
             background-size: contain;
             margin-right: 6px;
             vertical-align: middle;
-            filter: brightness(0) saturate(100%) invert(77%) sepia(67%) saturate(538%) hue-rotate(11deg) brightness(103%) contrast(101%);
         }
 
         .whop-link::after {
@@ -1256,13 +1258,16 @@
         .toast-avatar {
             width: 36px;
             height: 36px;
-            background: url('Downloads/Whop logo.jpg') no-repeat center;
-            background-size: cover;
-            border-radius: 0;
+            background: #e8ff47;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            font-family: var(--font-primary);
+            font-weight: 800;
+            font-size: 18px;
+            color: #0d0d0d;
         }
 
         .toast-text {
@@ -1519,7 +1524,7 @@
         </div>
 
         <div class="hero-actions">
-                <a href="https://whop.com/infowizards/the-7-day-idea-proof-lab/" class="btn btn-primary" target="_blank" rel="noopener"><img src="Downloads/lock.png" alt="" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle; display: inline-block;"> Get Instant Access — $37</a>
+                <a href="https://whop.com/infowizards/the-7-day-idea-proof-lab/" class="btn btn-primary" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0d0d0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Get Instant Access — $37</a>
         </div>
 
         <div class="hero-trust-row">
@@ -1575,13 +1580,13 @@
                 <h2 class="quiz-cta-title">Take a <span class="accent">90-second quiz</span> to find your path</h2>
                 <p class="quiz-cta-body">Answer 12 quick questions about your experience level, goals, and current situation. We'll show you exactly which sprint track is right for you — beginner, growth, or advanced.</p>
                 <div class="quiz-cta-features">
-                    <span class="quiz-chip"><img src="Downloads/bolt.png" alt="" style="width: 14px; height: 14px; margin-right: 6px; vertical-align: middle; display: inline-block;"> Takes 90 seconds</span>
-                    <span class="quiz-chip"><img src="Downloads/bullseye-arrow.png" alt="" style="width: 14px; height: 14px; margin-right: 6px; vertical-align: middle; display: inline-block;"> Personalized results</span>
-                    <span class="quiz-chip"><img src="Downloads/chart-line-up.png" alt="" style="width: 14px; height: 14px; margin-right: 6px; vertical-align: middle; display: inline-block;"> Instant path match</span>
+                    <span class="quiz-chip"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e8ff47" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Takes 90 seconds</span>
+                    <span class="quiz-chip"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e8ff47" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Personalized results</span>
+                    <span class="quiz-chip"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e8ff47" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> Instant path match</span>
                 </div>
             </div>
             <div class="quiz-cta-action">
-                <a href="quiz.html" class="btn btn-primary btn-quiz" style="touch-action: manipulation; -webkit-tap-highlight-color: transparent; cursor: pointer;" onclick="window.location.href='quiz.html'; return true;"><img src="Downloads/bullseye-arrow.png" alt="" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle; display: inline-block;"> Take the Quiz — Find My Path</a>
+                <a href="quiz.html" class="btn btn-primary btn-quiz" style="touch-action: manipulation; -webkit-tap-highlight-color: transparent; cursor: pointer;" onclick="window.location.href='quiz.html'; return true;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0d0d0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Take the Quiz — Find My Path</a>
                 <p class="quiz-cta-note">Or keep scrolling to see the full sprint framework</p>
             </div>
         </div>
@@ -1864,8 +1869,8 @@
                 </div>
 
                 <div class="security-row">
-                    <span class="sec-chip"><img src="Downloads/lock.png" alt="" style="width: 12px; height: 12px; margin-right: 4px; vertical-align: middle; display: inline-block; filter: brightness(0) saturate(100%) invert(77%) sepia(67%) saturate(538%) hue-rotate(11deg) brightness(103%) contrast(101%);"> SSL Secure</span>
-                    <span class="sec-chip"><img src="Downloads/bolt.png" alt="" style="width: 12px; height: 12px; margin-right: 4px; vertical-align: middle; display: inline-block; filter: brightness(0) saturate(100%) invert(77%) sepia(67%) saturate(538%) hue-rotate(11deg) brightness(103%) contrast(101%);"> Instant Access</span>
+                    <span class="sec-chip"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#e8ff47" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; vertical-align: middle;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> SSL Secure</span>
+                    <span class="sec-chip"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#e8ff47" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; vertical-align: middle;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Instant Access</span>
                     <span class="sec-chip">🛡️ 30-Day Guarantee</span>
                 </div>
             </div>
@@ -1899,7 +1904,7 @@
                     <span>$37.00</span>
                 </div>
 
-                <button class="submit-btn"><img src="Downloads/lock.png" alt="" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle; display: inline-block;"> Start My Validation Sprint</button>
+                <button class="submit-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0d0d0d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Start My Validation Sprint</button>
 
                 <a href="#" class="whop-link">Complete checkout securely on Whop</a>
             </div>
@@ -1960,7 +1965,8 @@
         idx = (idx + 1) % names.length;
         toastName.textContent = names[idx];
         toast.style.display = 'flex';
-        toast.style.animation = 'none'        void toast.offsetWidth;
+        toast.style.animation = 'none';
+        void toast.offsetWidth;
         toast.style.animation = 'slideUp 0.4s ease forwards';
     }, 7000);
 
@@ -1997,4 +2003,3 @@
 
 </body>
 </html>
-
