@@ -1,0 +1,2993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Product Business Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ============================================
+           REDESIGNED QUIZ FUNNEL - PREMIUM EDITION
+           Calm, trustworthy, modern 2025-2026 aesthetic
+           ============================================ */
+        
+        /* CSS Variables for consistent theming */
+        :root {
+            /* Primary Palette - Deep Indigo & Blue-Gray */
+            --color-primary: #1e40af;
+            --color-primary-light: #3b82f6;
+            --color-primary-dark: #1e3a8a;
+            
+            /* Accent - Soft Teal/Emerald */
+            --color-accent: #0d9488;
+            --color-accent-light: #14b8a6;
+            --color-accent-soft: #f0fdfa;
+            
+            /* Neutrals - Clean & Minimal */
+            --color-bg: #fafafa;
+            --color-bg-warm: #f8fafc;
+            --color-white: #ffffff;
+            --color-text-primary: #0f172a;
+            --color-text-secondary: #475569;
+            --color-text-muted: #64748b;
+            --color-border: #e2e8f0;
+            --color-border-light: #f1f5f9;
+            
+            /* Semantic Colors - Subtle */
+            --color-success: #059669;
+            --color-warning: #d97706;
+            --color-error: #dc2626;
+            
+            /* Shadows - Soft & Elevated */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-glow: 0 0 40px rgba(30, 64, 175, 0.15);
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --line-height-tight: 1.25;
+            --line-height-normal: 1.6;
+            --line-height-relaxed: 1.75;
+            
+            /* Spacing Scale */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-normal: 250ms ease;
+            --transition-slow: 350ms ease;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-full: 9999px;
+        }
+
+        /* Base Reset & Typography */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--color-bg);
+            color: var(--color-text-primary);
+            line-height: var(--line-height-normal);
+            min-height: 100vh;
+            padding: var(--space-6);
+        }
+
+        /* Container - Centered & Constrained */
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+
+        /* ============================================
+           HEADER - Minimal & Clean
+           ============================================ */
+        .quiz-header {
+            text-align: center;
+            margin-bottom: var(--space-10);
+            padding: var(--space-8) 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--space-2);
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* ============================================
+           PROGRESS BAR - Slim & Elegant
+           ============================================ */
+        .progress-container {
+            margin-bottom: var(--space-8);
+            padding: 0 var(--space-4);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 3px;
+            background: var(--color-border);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            margin-bottom: var(--space-3);
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            width: 6%;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: var(--radius-full);
+        }
+
+        .progress-text {
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ============================================
+           QUIZ CONTENT - Card-Based Design
+           ============================================ */
+        .quiz-content {
+            background: var(--color-white);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8) var(--space-6);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: var(--space-8);
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid var(--color-border-light);
+        }
+
+        @media (min-width: 640px) {
+            .quiz-content {
+                padding: var(--space-10) var(--space-8);
+            }
+        }
+
+        .question-container {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .question-container.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(8px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        /* Question Text - Large & Readable */
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: var(--line-height-tight);
+            margin-bottom: var(--space-8);
+            color: var(--color-text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        @media (min-width: 640px) {
+            .question-text {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* ============================================
+           OPTIONS - Clean Cards with Subtle Interaction
+           ============================================ */
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .option {
+            padding: var(--space-5) var(--space-6);
+            background: var(--color-white);
+            border: 1.5px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            position: relative;
+            min-height: auto;
+            line-height: var(--line-height-normal);
+        }
+
+        .option:hover {
+            border-color: var(--color-primary-light);
+            background: var(--color-bg-warm);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .option.selected {
+            border-color: var(--color-primary);
+            background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .option-checkmark {
+            position: absolute;
+            right: var(--space-5);
+            top: 50%;
+            transform: translateY(-50%);
+            width: 22px;
+            height: 22px;
+            background: var(--color-primary);
+            border-radius: var(--radius-full);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .option.selected .option-checkmark {
+            display: flex;
+        }
+
+        .option-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            flex: 1;
+            padding-right: var(--space-8);
+            line-height: var(--line-height-relaxed);
+        }
+
+        .option.selected .option-text {
+            color: var(--color-text-primary);
+            font-weight: 600;
+        }
+
+        /* ============================================
+           BUTTONS - Pill-Shaped & Premium
+           ============================================ */
+        .buttons {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: var(--space-8);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--color-border-light);
+        }
+
+        .btn {
+            padding: var(--space-4) var(--space-8);
+            border: none;
+            border-radius: var(--radius-full);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            letter-spacing: -0.01em;
+        }
+
+        .btn-prev {
+            background: var(--color-bg-warm);
+            color: var(--color-text-muted);
+            margin-right: auto;
+        }
+
+        .btn-prev:hover:not(:disabled) {
+            background: var(--color-border);
+            color: var(--color-text-secondary);
+        }
+
+        .btn-next {
+            background: var(--color-primary);
+            color: var(--color-white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-next:hover:not(:disabled) {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-lg), 0 0 30px rgba(30, 64, 175, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* ============================================
+           WELCOME SCREEN - Elegant Hero Layout
+           ============================================ */
+        .welcome-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: auto;
+            padding: var(--space-8) var(--space-4);
+            text-align: center;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .welcome-content {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* Hero Section - Single unified design */
+        .welcome-hero {
+            margin-bottom: var(--space-10);
+        }
+
+        .welcome-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-6);
+            line-height: 1;
+            display: inline-block;
+        }
+
+        .welcome-headline {
+            font-size: 2.25rem;
+            font-weight: 700;
+            line-height: var(--line-height-tight);
+            margin-bottom: var(--space-5);
+            color: var(--color-text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        @media (min-width: 640px) {
+            .welcome-headline {
+                font-size: 2.75rem;
+            }
+        }
+
+        .welcome-headline .highlight {
+            color: var(--color-primary);
+            position: relative;
+        }
+
+        .welcome-subheadline {
+            font-size: 1.125rem;
+            line-height: var(--line-height-relaxed);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-8);
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Benefit List - Clean & Scannable */
+        .welcome-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            margin-bottom: var(--space-10);
+            text-align: left;
+            max-width: 440px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-4);
+            padding: var(--space-4);
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border-light);
+        }
+
+        .benefit-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background: var(--color-accent-soft);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-accent);
+            font-size: 0.75rem;
+        }
+
+        .benefit-text {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-normal);
+        }
+
+        .benefit-text strong {
+            color: var(--color-text-primary);
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .welcome-cta {
+            margin-top: var(--space-8);
+        }
+
+        .btn-welcome {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-5) var(--space-10);
+            background: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            border-radius: var(--radius-full);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-lg);
+            line-height: 1.5;
+            max-width: 100%;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-welcome:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-xl), 0 0 40px rgba(30, 64, 175, 0.25);
+            background: var(--color-primary-dark);
+        }
+
+        .welcome-trust {
+            margin-top: var(--space-5);
+            font-size: 0.8125rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        .welcome-trust span {
+            margin: 0 var(--space-2);
+        }
+
+        /* Social Proof - Subtle & Trustworthy */
+        .welcome-social-proof {
+            margin-top: var(--space-12);
+            padding-top: var(--space-8);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .social-proof-label {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            margin-bottom: var(--space-6);
+        }
+
+        .social-proof-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-8);
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            line-height: 1;
+            margin-bottom: var(--space-1);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        /* ============================================
+           PATTERN INTERRUPTS - Clean & Impactful
+           ============================================ */
+        .pattern-interrupt {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            text-align: center;
+            padding: var(--space-4);
+        }
+
+        .pattern-interrupt.active {
+            display: block;
+        }
+
+        /* Interrupt Header - Subtle Background Tint */
+        .interrupt-header {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(13, 148, 136, 0.05) 100%);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8) var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+
+        .interrupt-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-5);
+            line-height: 1;
+        }
+
+        .interrupt-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+            color: var(--color-text-primary);
+            line-height: var(--line-height-tight);
+            letter-spacing: -0.02em;
+        }
+
+        @media (min-width: 640px) {
+            .interrupt-title {
+                font-size: 2rem;
+            }
+        }
+
+        .interrupt-subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* Comparison Cards */
+        .comparison-container {
+            display: grid;
+            gap: var(--space-4);
+            max-width: 520px;
+            margin: var(--space-8) auto;
+        }
+
+        .comparison-card {
+            background: var(--color-white);
+            border: 1.5px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-5);
+            text-align: left;
+        }
+
+        .comparison-card.wrong {
+            border-left: 4px solid var(--color-error);
+        }
+
+        .comparison-card.right {
+            border-left: 4px solid var(--color-success);
+            background: var(--color-accent-soft);
+            border-color: var(--color-accent-light);
+        }
+
+        .comparison-label {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-2);
+        }
+
+        .comparison-card.wrong .comparison-label {
+            color: var(--color-error);
+        }
+
+        .comparison-card.right .comparison-label {
+            color: var(--color-success);
+        }
+
+        .comparison-text {
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            line-height: var(--line-height-normal);
+        }
+
+        /* Interrupt Content Cards */
+        .interrupt-content {
+            max-width: 540px;
+            margin: 0 auto var(--space-8);
+        }
+
+        .interrupt-card {
+            background: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            margin-bottom: var(--space-4);
+            text-align: left;
+        }
+
+        .interrupt-card-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-3);
+        }
+
+        .interrupt-card-text {
+            font-size: 1.0625rem;
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+        }
+
+        .interrupt-card-text strong {
+            color: var(--color-text-primary);
+            font-weight: 600;
+        }
+
+        /* Stats Block */
+        .interrupt-stats {
+            background: var(--color-text-primary);
+            color: var(--color-white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            margin: var(--space-6) 0;
+        }
+
+        .interrupt-stats p {
+            font-size: 1rem;
+            line-height: var(--line-height-relaxed);
+            margin-bottom: var(--space-3);
+        }
+
+        .interrupt-stats p:last-child {
+            margin-bottom: 0;
+        }
+
+        .interrupt-stats strong {
+            color: var(--color-accent-light);
+            font-weight: 600;
+        }
+
+        /* Timeline */
+        .timeline {
+            max-width: 480px;
+            margin: var(--space-8) auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+            text-align: left;
+        }
+
+        .timeline-marker {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--color-accent-soft);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-accent);
+            font-size: 0.875rem;
+            font-weight: 700;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-top: var(--space-1);
+        }
+
+        .timeline-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-1);
+        }
+
+        .timeline-text {
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            font-weight: 500;
+            line-height: var(--line-height-normal);
+        }
+
+        /* Testimonial */
+        .interrupt-testimonial {
+            background: var(--color-bg-warm);
+            border-left: 3px solid var(--color-accent);
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            padding: var(--space-5);
+            margin: var(--space-6) 0;
+            text-align: left;
+        }
+
+        .interrupt-testimonial p {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+            font-style: italic;
+            margin-bottom: var(--space-3);
+        }
+
+        .interrupt-testimonial p strong {
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .testimonial-author {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        /* Urgency Block */
+        .interrupt-urgency {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(217, 119, 6, 0.05) 100%);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            border-radius: var(--radius-xl);
+            padding: var(--space-5);
+            margin: var(--space-6) 0;
+        }
+
+        .interrupt-urgency p {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-normal);
+        }
+
+        .interrupt-urgency strong {
+            color: var(--color-error);
+            font-weight: 600;
+        }
+
+        /* Continue Button */
+        .btn-continue {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-4) var(--space-8);
+            background: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            border-radius: var(--radius-full);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md);
+            margin-top: var(--space-6);
+            letter-spacing: -0.01em;
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--shadow-lg), 0 0 30px rgba(30, 64, 175, 0.25);
+            background: var(--color-primary-dark);
+        }
+
+        /* ============================================
+           LOADING SCREEN - Clean & Professional
+           ============================================ */
+        .loading-screen {
+            display: none;
+            text-align: center;
+            padding: var(--space-8) var(--space-4);
+        }
+
+        .loading-screen.active {
+            display: block;
+        }
+
+        .loading-header {
+            margin-bottom: var(--space-8);
+        }
+
+        .loading-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-4);
+        }
+
+        .loading-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-2);
+        }
+
+        .loading-subtitle {
+            font-size: 0.9375rem;
+            color: var(--color-text-muted);
+        }
+
+        .loading-bar {
+            width: 100%;
+            max-width: 400px;
+            height: 3px;
+            background: var(--color-border);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            margin: var(--space-8) auto;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            width: 0%;
+            border-radius: var(--radius-full);
+            transition: width 0.5s ease;
+        }
+
+        .answer-review {
+            margin: var(--space-6) auto;
+            text-align: left;
+            max-width: 520px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: var(--space-2);
+        }
+
+        .answer-review::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .answer-review::-webkit-scrollbar-track {
+            background: var(--color-border-light);
+            border-radius: var(--radius-full);
+        }
+
+        .answer-review::-webkit-scrollbar-thumb {
+            background: var(--color-border);
+            border-radius: var(--radius-full);
+        }
+
+        .review-item {
+            padding: var(--space-4);
+            margin-bottom: var(--space-3);
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border-light);
+            opacity: 0;
+            transform: translateX(-12px);
+            transition: all 0.4s ease;
+        }
+
+        .review-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .review-question {
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-2);
+            font-size: 0.875rem;
+            line-height: var(--line-height-normal);
+        }
+
+        .review-answer {
+            color: var(--color-text-muted);
+            font-size: 0.8125rem;
+            line-height: var(--line-height-normal);
+        }
+
+        /* ============================================
+           EMAIL CAPTURE - Minimal & Trustworthy
+           ============================================ */
+        .email-capture {
+            display: none;
+            text-align: center;
+            padding: var(--space-8) var(--space-4);
+        }
+
+        .email-capture.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .email-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-4);
+        }
+
+        .email-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-3);
+        }
+
+        .email-subtitle {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-6);
+            line-height: var(--line-height-relaxed);
+        }
+
+        .email-form {
+            max-width: 360px;
+            margin: 0 auto;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: var(--space-4) var(--space-5);
+            font-size: 1rem;
+            border: 1.5px solid var(--color-border);
+            border-radius: var(--radius-full);
+            margin-bottom: var(--space-4);
+            transition: all var(--transition-normal);
+            font-family: inherit;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .email-input::placeholder {
+            color: var(--color-text-muted);
+        }
+
+        .email-privacy {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            margin-top: var(--space-4);
+        }
+
+        /* ============================================
+           RESULTS PAGE - Luxurious & High-Ticket
+           ============================================ */
+        .results-container {
+            display: none;
+        }
+
+        .results-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Results Header - Premium Gradient */
+        .results-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #1e3a8a 50%, var(--color-accent) 100%);
+            color: var(--color-white);
+            padding: var(--space-10) var(--space-6);
+            border-radius: var(--radius-2xl);
+            margin-bottom: var(--space-8);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .results-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: var(--space-2) var(--space-5);
+            border-radius: var(--radius-full);
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .results-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: var(--space-3);
+            line-height: var(--line-height-tight);
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        @media (min-width: 640px) {
+            .results-title {
+                font-size: 2rem;
+            }
+        }
+
+        .results-title-accent {
+            color: #a5f3fc;
+        }
+
+        .results-divider {
+            width: 48px;
+            height: 3px;
+            background: var(--color-accent-light);
+            margin: var(--space-5) auto;
+            border-radius: var(--radius-full);
+        }
+
+        .results-description {
+            font-size: 1.0625rem;
+            line-height: var(--line-height-relaxed);
+            opacity: 0.95;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+
+        /* Path Badge */
+        .path-badge {
+            display: inline-block;
+            background: var(--color-white);
+            color: var(--color-primary);
+            padding: var(--space-2) var(--space-5);
+            border-radius: var(--radius-full);
+            font-size: 0.8125rem;
+            font-weight: 700;
+            margin-top: var(--space-5);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ============================================
+           OFFER CONTAINERS - Premium Cards
+           ============================================ */
+        .offer-container {
+            background: var(--color-white);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8) var(--space-6);
+            margin-bottom: var(--space-8);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-border-light);
+            position: relative;
+        }
+
+        @media (min-width: 640px) {
+            .offer-container {
+                padding: var(--space-10);
+            }
+        }
+
+        /* Recommended Badge - Elegant */
+        .offer-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--color-error) 0%, #b91c1c 100%);
+            color: var(--color-white);
+            padding: var(--space-2) var(--space-5);
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 0.6875rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Offer Header */
+        .offer-header {
+            text-align: center;
+            margin-bottom: var(--space-8);
+        }
+
+        .offer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-2);
+            line-height: var(--line-height-tight);
+            letter-spacing: -0.01em;
+        }
+
+        @media (min-width: 640px) {
+            .offer-title {
+                font-size: 1.75rem;
+            }
+        }
+
+        .offer-subtitle {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        /* Price Block - Clean & Premium */
+        .price-block {
+            background: linear-gradient(135deg, var(--color-bg-warm) 0%, var(--color-white) 100%);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            margin-bottom: var(--space-8);
+            text-align: center;
+        }
+
+        .price-original {
+            font-size: 0.9375rem;
+            color: var(--color-text-muted);
+            text-decoration: line-through;
+            margin-bottom: var(--space-1);
+        }
+
+        .price-current {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: var(--space-2);
+            letter-spacing: -0.02em;
+        }
+
+        .price-savings {
+            font-size: 0.875rem;
+            color: var(--color-success);
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+        }
+
+        .price-note {
+            font-size: 0.8125rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Features List - Clean */
+        .offer-features {
+            list-style: none;
+            margin-bottom: var(--space-8);
+        }
+
+        .offer-features li {
+            padding: var(--space-4) 0;
+            border-bottom: 1px solid var(--color-border-light);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            font-size: 0.9375rem;
+            line-height: var(--line-height-relaxed);
+        }
+
+        .offer-features li:last-child {
+            border-bottom: none;
+        }
+
+        .offer-features i {
+            color: var(--color-success);
+            font-size: 1rem;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            color: var(--color-text-primary);
+            display: block;
+            margin-bottom: var(--space-1);
+        }
+
+        .feature-desc {
+            color: var(--color-text-secondary);
+            font-size: 0.8125rem;
+        }
+
+        /* Guarantee Box - Trust Building */
+        .guarantee-box {
+            background: var(--color-accent-soft);
+            border: 1px solid rgba(13, 148, 136, 0.2);
+            border-radius: var(--radius-xl);
+            padding: var(--space-5);
+            margin-bottom: var(--space-6);
+            text-align: center;
+        }
+
+        .guarantee-title {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: var(--color-success);
+            margin-bottom: var(--space-2);
+        }
+
+        .guarantee-text {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+        }
+
+        .guarantee-text strong {
+            color: var(--color-text-primary);
+            font-weight: 600;
+        }
+
+        /* CTA Button */
+        .btn-buy {
+            display: block;
+            width: 100%;
+            padding: var(--space-5) var(--space-6);
+            background: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            border-radius: var(--radius-full);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            text-align: center;
+            text-decoration: none;
+            letter-spacing: -0.01em;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-buy:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: var(--shadow-xl), 0 0 40px rgba(30, 64, 175, 0.25);
+            background: var(--color-primary-dark);
+        }
+
+        /* Trust Row */
+        .trust-row {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        /* P.S. Section */
+        .ps-section {
+            margin-top: var(--space-8);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--color-border-light);
+        }
+
+        .ps-text {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+            margin-bottom: var(--space-3);
+        }
+
+        .ps-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .ps-text strong {
+            color: var(--color-text-primary);
+            font-weight: 600;
+        }
+
+        .ps-highlight {
+            color: var(--color-error);
+            font-weight: 700;
+        }
+
+        /* ============================================
+           SOCIAL PROOF - Minimal & Trustworthy
+           ============================================ */
+        .social-proof {
+            background: var(--color-white);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8) var(--space-6);
+            margin-bottom: var(--space-8);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-border-light);
+        }
+
+        .social-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-6);
+            text-align: center;
+            letter-spacing: -0.01em;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
+        }
+
+        @media (min-width: 640px) {
+            .testimonials {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .testimonial {
+            background: var(--color-bg-warm);
+            padding: var(--space-5);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--color-border-light);
+        }
+
+        .testimonial-text {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+            margin-bottom: var(--space-4);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        /* ============================================
+           OTO SECTIONS - Premium Upsell
+           ============================================ */
+        .oto-container {
+            border-color: var(--color-accent-light);
+        }
+
+        .oto-badge {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+        }
+
+        .oto-header {
+            background: linear-gradient(135deg, var(--color-accent-soft) 0%, var(--color-white) 100%);
+            border: 1px solid rgba(13, 148, 136, 0.2);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+        }
+
+        .oto-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: var(--space-2);
+        }
+
+        .oto-headline {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-3);
+            line-height: var(--line-height-tight);
+        }
+
+        .oto-subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        /* Comparison Table - Clean */
+        .comparison-table {
+            background: var(--color-bg-warm);
+            border-radius: var(--radius-xl);
+            padding: var(--space-5);
+            margin: var(--space-6) 0;
+        }
+
+        .comparison-header {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-4);
+            text-align: center;
+        }
+
+        .comparison-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-4) 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-label {
+            font-size: 0.8125rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        .comparison-value {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        .comparison-value.highlight {
+            color: var(--color-accent);
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            gap: var(--space-3);
+            margin: var(--space-6) 0;
+        }
+
+        .feature-card {
+            background: var(--color-bg-warm);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+        }
+
+        .feature-card-title {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            line-height: var(--line-height-normal);
+        }
+
+        .feature-card-title span {
+            color: var(--color-accent);
+            font-weight: 700;
+        }
+
+        /* Countdown - Subtle but Urgent */
+        .countdown-container {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(217, 119, 6, 0.05) 100%);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            border-radius: var(--radius-xl);
+            padding: var(--space-5);
+            margin: var(--space-6) 0;
+            text-align: center;
+        }
+
+        .countdown-label {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-error);
+            margin-bottom: var(--space-3);
+        }
+
+        .countdown-timer {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-error);
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-3);
+        }
+
+        .countdown-note {
+            font-size: 0.8125rem;
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-normal);
+        }
+
+        /* OTO Price */
+        .oto-price-block {
+            background: linear-gradient(135deg, var(--color-accent-soft) 0%, var(--color-white) 100%);
+            border: 1px solid rgba(13, 148, 136, 0.3);
+        }
+
+        .oto-price {
+            color: var(--color-accent);
+        }
+
+        .oto-cta {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+        }
+
+        .oto-cta:hover {
+            box-shadow: var(--shadow-xl), 0 0 40px rgba(13, 148, 136, 0.3);
+        }
+
+        /* Decline Link */
+        .decline-link {
+            display: block;
+            text-align: center;
+            margin-top: var(--space-5);
+            color: var(--color-text-muted);
+            text-decoration: underline;
+            font-size: 0.8125rem;
+            transition: color var(--transition-fast);
+        }
+
+        .decline-link:hover {
+            color: var(--color-text-secondary);
+        }
+
+        /* ============================================
+           BRIDGE SECTION - Personal Note
+           ============================================ */
+        .bridge-container {
+            background: linear-gradient(135deg, var(--color-bg-warm) 0%, var(--color-white) 100%);
+            border-color: rgba(13, 148, 136, 0.3);
+        }
+
+        .bridge-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-4);
+        }
+
+        .bridge-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: var(--space-5);
+            letter-spacing: -0.01em;
+        }
+
+        .bridge-content {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .bridge-message {
+            background: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            margin-bottom: var(--space-5);
+            text-align: left;
+        }
+
+        .bridge-text {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-relaxed);
+            margin-bottom: var(--space-4);
+        }
+
+        .bridge-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .bridge-text strong {
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .bridge-future {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+            color: var(--color-white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            margin-bottom: var(--space-5);
+        }
+
+        .bridge-future-title {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            margin-bottom: var(--space-3);
+            opacity: 0.95;
+        }
+
+        .bridge-future-text {
+            font-size: 1rem;
+            line-height: var(--line-height-relaxed);
+            opacity: 0.95;
+        }
+
+        .bridge-choice {
+            background: var(--color-white);
+            border: 2px dashed var(--color-accent-light);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            margin-bottom: var(--space-5);
+        }
+
+        .bridge-choice-text {
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: var(--space-2);
+        }
+
+        .bridge-choice-subtext {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-3);
+        }
+
+        .bridge-choice-cta {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--color-error);
+            line-height: var(--line-height-tight);
+        }
+
+        .bridge-closing {
+            margin-top: var(--space-5);
+            padding-top: var(--space-5);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .bridge-closing-text {
+            font-size: 0.9375rem;
+            color: var(--color-text-muted);
+            font-style: italic;
+            line-height: var(--line-height-relaxed);
+        }
+
+        .bridge-closing-text strong {
+            color: var(--color-accent);
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        /* ============================================
+           FOOTER - Minimal
+           ============================================ */
+        .footer {
+            text-align: center;
+            padding: var(--space-8) 0;
+            color: var(--color-text-muted);
+            font-size: 0.8125rem;
+            border-top: 1px solid var(--color-border);
+            margin-top: var(--space-8);
+        }
+
+        .footer p {
+            margin-bottom: var(--space-2);
+        }
+
+        .footer p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ============================================
+           RESPONSIVE ADJUSTMENTS
+           ============================================ */
+        @media (max-width: 639px) {
+            body {
+                padding: var(--space-4);
+            }
+
+            .container {
+                padding: 0;
+            }
+
+            .quiz-content {
+                padding: var(--space-6) var(--space-4);
+                border-radius: var(--radius-xl);
+            }
+
+            .question-text {
+                font-size: 1.25rem;
+            }
+
+            .option {
+                padding: var(--space-4);
+            }
+
+            .option-text {
+                padding-right: var(--space-6);
+                font-size: 0.9375rem;
+            }
+
+            /* Welcome Screen Mobile - Compact Layout */
+            .quiz-header {
+                margin-bottom: var(--space-4);
+                padding: var(--space-4) 0;
+            }
+
+            .welcome-screen {
+                padding: var(--space-4) var(--space-3);
+            }
+
+            .welcome-hero {
+                margin-bottom: var(--space-6);
+            }
+
+            .welcome-icon {
+                font-size: 2.5rem;
+                margin-bottom: var(--space-4);
+            }
+
+            .welcome-headline {
+                font-size: 1.75rem;
+                margin-bottom: var(--space-3);
+            }
+
+            .welcome-subheadline {
+                font-size: 1rem;
+                margin-bottom: var(--space-5);
+            }
+
+            .welcome-benefits {
+                margin-bottom: var(--space-6);
+                gap: var(--space-2);
+            }
+
+            .benefit-item {
+                padding: var(--space-3);
+            }
+
+            .welcome-cta {
+                margin-top: var(--space-5);
+            }
+
+            .btn-welcome {
+                padding: var(--space-4) var(--space-6);
+                font-size: 0.9375rem;
+            }
+
+            .welcome-social-proof {
+                margin-top: var(--space-8);
+                padding-top: var(--space-5);
+            }
+
+            .social-proof-stats {
+                gap: var(--space-5);
+            }
+
+            .stat-number {
+                font-size: 1.25rem;
+            }
+
+            .interrupt-title {
+                font-size: 1.5rem;
+            }
+
+            .results-header {
+                padding: var(--space-8) var(--space-5);
+            }
+
+            .results-title {
+                font-size: 1.5rem;
+            }
+
+            .price-current {
+                font-size: 2.5rem;
+            }
+
+            .offer-container,
+            .social-proof {
+                padding: var(--space-6) var(--space-4);
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .buttons {
+                flex-direction: column-reverse;
+            }
+
+            .btn-prev {
+                margin-right: 0;
+                margin-top: var(--space-3);
+            }
+        }
+
+        /* Accessibility Improvements */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus States */
+        .btn:focus-visible,
+        .option:focus-visible,
+        .email-input:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="quiz-header" id="quizHeader">
+            <div class="logo">Digital Product Quiz</div>
+            <div class="subtitle">Find your perfect path</div>
+        </div>
+
+        <!-- Welcome Screen - Elegant Hero Layout -->
+        <div class="welcome-screen" id="welcomeScreen">
+            <div class="welcome-content">
+                
+                <!-- Hero Section - Single Unified Design -->
+                <div class="welcome-hero">
+                    <div class="welcome-icon">💔</div>
+                    <h1 class="welcome-headline">
+                        Three Months of Work.<br>
+                        <span class="highlight">Zero Sales.</span>
+                    </h1>
+                    <p class="welcome-subheadline">
+                        You built the product first. Successful creators do the opposite. 
+                        This 90-second quiz reveals your path to your first $1K month.
+                    </p>
+                </div>
+                
+                <!-- Clean Benefit List -->
+                <div class="welcome-benefits">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🎯</div>
+                        <div class="benefit-text">
+                            <strong>Discover the $10K validation mistake</strong> you're about to make
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💡</div>
+                        <div class="benefit-text">
+                            <strong>Join the 8%</strong> who validate before they build
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🚀</div>
+                        <div class="benefit-text">
+                            <strong>Get your personalized path</strong> to $1K/month
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CTA Section -->
+                <div class="welcome-cta">
+                    <button class="btn-welcome" onclick="startQuiz()">
+                        Take the Quiz <span>→</span>
+                    </button>
+                    <p class="welcome-trust">
+                        <span>✓ Takes 90 seconds</span>
+                        <span>•</span>
+                        <span>Instant results</span>
+                    </p>
+                </div>
+                
+                <!-- Social Proof - Subtle -->
+                <div class="welcome-social-proof">
+                    <div class="social-proof-label">Trusted by creators</div>
+                    <div class="social-proof-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">117</div>
+                            <div class="stat-label">Quizzes completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">$30,000</div>
+                            <div class="stat-label">Revenue validated</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">4.9★</div>
+                            <div class="stat-label">Average rating</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container" id="progressContainer" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 of 12</div>
+        </div>
+
+        <!-- Quiz Content -->
+        <div class="quiz-content" id="quizContent" style="display: none;">
+            <!-- Questions will be dynamically added here -->
+            <div id="questionContainer"></div>
+            
+            <!-- Email Capture -->
+            <div class="email-capture" id="emailCapture">
+                <div class="email-icon">📧</div>
+                <h2 class="email-title">One More Step</h2>
+                <p class="email-subtitle">
+                    Enter your email to receive your personalized results and exclusive resources.
+                </p>
+                <form class="email-form" id="emailForm" onsubmit="event.preventDefault(); return false;">
+                    <input type="email" class="email-input" id="emailInput" placeholder="your@email.com" required autocomplete="email">
+                    <button type="button" class="btn btn-next" id="submitEmail" style="width: 100%;">
+                        Get My Results →
+                    </button>
+                </form>
+                <p class="email-privacy">🔒 We respect your privacy. Unsubscribe anytime.</p>
+            </div>
+
+            <!-- Pattern Interrupt #1 (After Question 3) -->
+            <div class="pattern-interrupt" id="interrupt1">
+                <div class="interrupt-header">
+                    <div class="interrupt-icon">⚠️</div>
+                    <h2 class="interrupt-title">You Just Made the $10,000 Mistake</h2>
+                    <p class="interrupt-subtitle">
+                        You visualized your dream business. You're ready to build.<br>
+                        That's exactly how 92% of failed products start.
+                    </p>
+                </div>
+                
+                <div class="comparison-container">
+                    <div class="comparison-card wrong">
+                        <div class="comparison-label">❌ What Doesn't Work</div>
+                        <div class="comparison-text">Build → Hope people buy → Crickets</div>
+                    </div>
+                    <div class="comparison-card right">
+                        <div class="comparison-label">✅ What the 8% Do</div>
+                        <div class="comparison-text">Validate → Pre-sell to buyers → Build what they want</div>
+                    </div>
+                </div>
+                
+                <div class="interrupt-stats">
+                    <p><strong>92% skip validation</strong> and build products nobody wants.</p>
+                    <p>Not because their ideas were bad. Not because they didn't work hard.</p>
+                    <p>But because they skipped <strong>ONE step</strong> the successful 8% do first.</p>
+                </div>
+                
+                <button class="btn-continue" id="continue1">
+                    Continue Quiz →
+                </button>
+            </div>
+
+            <!-- Pattern Interrupt #2 (After Question 7) -->
+            <div class="pattern-interrupt" id="interrupt2">
+                <div class="interrupt-header">
+                    <div class="interrupt-icon">🚀</div>
+                    <h2 class="interrupt-title">Sarah Did This in 30 Days</h2>
+                    <p class="interrupt-subtitle">
+                        While you were still "researching"
+                    </p>
+                </div>
+                
+                <div class="interrupt-content">
+                    <div class="interrupt-card">
+                        <div class="interrupt-card-title">Sarah's "Before"</div>
+                        <div class="interrupt-card-text">
+                            <strong>3 months of building. $0 in sales.</strong> Sound familiar?
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 1.125rem; font-weight: 600; color: var(--color-text-primary); margin: var(--space-5) 0;">
+                        Then she discovered "Validate-Before-You-Build"
+                    </p>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker">1</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Day 1</div>
+                                <div class="timeline-text">Validated with <strong>real buyers</strong> (not friends)</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">7</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Day 7</div>
+                                <div class="timeline-text">Pre-sold to <strong>47 people</strong> before building</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">30</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Day 30</div>
+                                <div class="timeline-text"><strong>$941</strong> in sales, zero product created</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="interrupt-testimonial">
+                        <p>"I wasted 3 months building what nobody wanted. This showed me what people were <strong>already desperate to buy.</strong>"</p>
+                        <div class="testimonial-author">— Sarah M., Course Creator</div>
+                    </div>
+                    
+                    
+                </div>
+                
+                <button class="btn-continue" id="continue2">
+                    See My Results →
+                </button>
+            </div>
+
+            <!-- Loading Screen -->
+            <div class="loading-screen" id="loadingScreen">
+                <div class="loading-header">
+                    <div class="loading-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></div>
+                    <h2 class="loading-title">Analyzing Your Answers</h2>
+                    <p class="loading-subtitle">Building your personalized path...</p>
+                </div>
+                <div class="loading-bar">
+                    <div class="loading-progress" id="loadingProgress"></div>
+                </div>
+                <div class="answer-review" id="answerReview"></div>
+            </div>
+        </div>
+
+        <!-- Results Container -->
+        <div class="results-container" id="resultsContainer"></div>
+
+        <!-- Footer -->
+        <div class="footer" id="quizFooter">
+            <p>© 2024 Digital Product Business Quiz. All rights reserved.</p>
+            <p>This quiz helps you find the right path for your digital product business.</p>
+        </div>
+    </div>
+
+    <script>
+        // WHOP CHECKOUT LINKS - Update these with your actual Whop URLs
+        const whopLinks = {
+            beginner: '#',      // Replace with your Whop checkout URL for Beginner Path
+            warm: '#',          // Replace with your Whop checkout URL for Warm Path  
+            advanced: '#',      // Replace with your Whop checkout URL for Advanced Path
+            otoBeginner: '#',   // Replace with your Whop checkout URL for Beginner OTO
+            otoWarm: '#',       // Replace with your Whop checkout URL for Warm OTO
+            otoAdvanced: '#',   // Replace with your Whop checkout URL for Advanced OTO
+            declineOto: 'learning.html'
+        };
+
+        // IMPROVED QUIZ DATA - All questions and answers rewritten for maximum clarity and distinctiveness
+        // Questions 1-4: Beginner indicators (12-15 points)
+        // Questions 5-8: Warm indicators (6-11 points)
+        // Questions 9-12: Advanced indicators (1-4 points)
+        
+        const quizData = [
+            // QUESTION 1 - BEGINNER INDICATORS
+            {
+                question: "How Do You Currently Validate If People Will Actually Buy Your Product?",
+                options: [
+                    { text: "I don't validate at all - I just build what I think is a good idea", points: 15 },
+                    { text: "I ask friends and family (who always say 'great idea' to be nice)", points: 12 },
+                    { text: "I post about it on social media and count likes as validation", points: 8 },
+                    { text: "I run paid campaigns and get actual pre-orders BEFORE building anything", points: 2 }
+                ]
+            },
+            
+            // QUESTION 2 - BEGINNER INDICATORS (IMPROVED: More distinctive differences)
+            {
+                question: "If You Could Only Have ONE Thing Right Now, What Would Finally Get You Moving?",
+                options: [
+                    { text: "A complete done-for-you roadmap with zero guesswork - just follow steps 1-2-3", points: 15 },
+                    { text: "A validation method that tells me YES or NO before I waste 3 months building", points: 12 },
+                    { text: "A proven traffic system - I have the product, I just need eyeballs on it", points: 7 },
+                    { text: "1-on-1 guidance to break through my $5K-10K revenue ceiling", points: 2 }
+                ]
+            },
+            
+            // QUESTION 3 - BEGINNER INDICATORS (IMPROVED: Non-overlapping fears)
+            {
+                question: "What Nightmare Scenario Keeps You Up At Night?",
+                options: [
+                    { text: "Spending 6 months building the 'perfect' product... and getting ZERO buyers", points: 15 },
+                    { text: "Everyone else is making $10K/month with 'worse' products than mine", points: 12 },
+                    { text: "Getting a few random sales but never hitting consistent $3K+ months", points: 8 },
+                    { text: "Being stuck at $5-8K/month forever because I can't crack scaling", points: 3 }
+                ]
+            },
+            
+            // QUESTION 4 - BEGINNER INDICATORS (IMPROVED: Mutually exclusive struggles)
+            {
+                question: "Complete This Sentence: 'The ONE Thing Holding Me Back Is...'",
+                options: [
+                    { text: "I don't know which idea to pursue - I have 7 'good' ideas and zero clarity", points: 15 },
+                    { text: "I built something I think is great, but literally nobody is buying it", points: 13 },
+                    { text: "I get a sale here and there, but it's totally random - no predictable system", points: 7 },
+                    { text: "I'm making $3-7K/month but hitting a wall I can't break through alone", points: 2 }
+                ]
+            },
+            
+            // QUESTION 5 - WARM INDICATORS (Already clear - minimal changes)
+            {
+                question: "The Brutal Truth About Your Current Monthly Revenue (Be Honest)",
+                options: [
+                    { text: "$0 - I've been 'getting ready' for months but haven't launched", points: 15 },
+                    { text: "$1-$500 - Random sales with no system or predictability", points: 8 },
+                    { text: "$1,000-$5,000 - Making sales but want to scale to $10K+", points: 6 },
+                    { text: "$5,000+ - Solid foundation, ready to optimize and scale", points: 2 }
+                ]
+            },
+            
+            // QUESTION 6 - WARM INDICATORS (Already clear - minimal changes)
+            {
+                question: "Why Most Creators Stay Stuck (What's Your #1 Obstacle Right Now?)",
+                options: [
+                    { text: "I don't know WHERE to start - too many conflicting strategies", points: 15 },
+                    { text: "I can't crack the traffic code - great product, zero visibility", points: 8 },
+                    { text: "I have sales but they're feast-or-famine, no consistency", points: 7 },
+                    { text: "I'm missing the ONE scaling strategy that separates $5K from $50K", points: 3 }
+                ]
+            },
+            
+            // QUESTION 7 - WARM INDICATORS (IMPROVED: Different learning methods, not just formats)
+            {
+                question: "How Have You Successfully Learned Complex Skills In The Past?",
+                options: [
+                    { text: "Copy-paste templates and paint-by-numbers guides - just tell me EXACTLY what to do", points: 15 },
+                    { text: "Video walkthroughs where I can watch over someone's shoulder and replicate", points: 11 },
+                    { text: "Community support where I can ask questions and get real-time answers", points: 7 },
+                    { text: "Direct 1-on-1 feedback on MY specific situation from an expert", points: 2 }
+                ]
+            },
+            
+            // QUESTION 8 - WARM INDICATORS (IMPROVED: Distinct emotional states)
+            {
+                question: "When You Think About Your Digital Product Business, What's Your Honest Gut Feeling?",
+                options: [
+                    { text: "Overwhelmed and paralyzed - so many steps, I don't even know where to begin", points: 15 },
+                    { text: "Frustrated and defeated - I've tried 3 times and failed every single time", points: 12 },
+                    { text: "Cautiously optimistic - I'm making some money but it's wildly unpredictable", points: 7 },
+                    { text: "Impatient and ambitious - I have proof of concept, now I want to SCALE FAST", points: 2 }
+                ]
+            },
+            
+            // QUESTION 9 - ADVANCED INDICATORS (IMPROVED: Title and content now match)
+            {
+                question: "What's The REAL Reason You Haven't Hit Your Income Goal Yet?",
+                options: [
+                    { text: "Deep down, I'm terrified I'm just not smart enough to figure this out", points: 15 },
+                    { text: "I keep starting but never finishing - I'm afraid of looking stupid if I fail publicly", points: 11 },
+                    { text: "I've validated the market, but I'm stuck in a revenue plateau I can't break", points: 4 },
+                    { text: "I lack the advanced systems/strategies that separate $10K from $100K months", points: 1 }
+                ]
+            },
+            
+            // QUESTION 10 - ADVANCED INDICATORS (Already excellent - no changes)
+            {
+                question: "Your 90-Day Goal: What Would Success Actually Look Like?",
+                options: [
+                    { text: "Finally getting my first paying customer (just one would change everything)", points: 15 },
+                    { text: "Building an email list of 1,000+ targeted buyers who want my product", points: 8 },
+                    { text: "Doubling my revenue with a proven system (from $2K to $4K or $5K to $10K)", points: 4 },
+                    { text: "Scaling to $20K+ months with a team and automated systems", points: 1 }
+                ]
+            },
+            
+            // QUESTION 11 - ADVANCED INDICATORS (Already excellent - no changes)
+            {
+                question: "Your Digital Product Experience Level (Where Are You REALLY At?)",
+                options: [
+                    { text: "Complete beginner - haven't validated, built, or launched anything", points: 15 },
+                    { text: "Launched but minimal results - made some sales but no system", points: 8 },
+                    { text: "Consistent seller - making regular sales, ready to scale", points: 4 },
+                    { text: "Experienced creator - ready for advanced scaling and automation", points: 1 }
+                ]
+            },
+            
+            // QUESTION 12 - ADVANCED INDICATORS (Already excellent - no changes)
+            {
+                question: "The Final Question: What Single Thing Would Transform Your Business?",
+                options: [
+                    { text: "A proven validation system that guarantees buyers before I build", points: 14 },
+                    { text: "A traffic blueprint that brings 500+ daily visitors on autopilot", points: 8 },
+                    { text: "Mentorship from someone who scaled to $50K+ months", points: 3 },
+                    { text: "Advanced systems to scale from $10K to $100K without working more hours", points: 1 }
+                ]
+            }
+        ];
+
+        // Quiz state
+        let currentQuestionIndex = 0;
+        let totalScore = 0;
+        let userEmail = '';
+        let userAnswers = new Array(quizData.length).fill(null);
+        const totalQuestions = quizData.length;
+
+        // DOM elements
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const quizHeader = document.getElementById('quizHeader');
+        const quizFooter = document.getElementById('quizFooter');
+        const progressContainer = document.getElementById('progressContainer');
+        const quizContent = document.getElementById('quizContent');
+        const questionContainer = document.getElementById('questionContainer');
+        const progressBar = document.getElementById('progress');
+        const progressText = document.getElementById('progressText');
+        const emailCapture = document.getElementById('emailCapture');
+        const emailInput = document.getElementById('emailInput');
+        const submitEmail = document.getElementById('submitEmail');
+        const interrupt1 = document.getElementById('interrupt1');
+        const interrupt2 = document.getElementById('interrupt2');
+        const loadingScreen = document.getElementById('loadingScreen');
+        const loadingProgress = document.getElementById('loadingProgress');
+        const answerReview = document.getElementById('answerReview');
+        const continue1 = document.getElementById('continue1');
+        const continue2 = document.getElementById('continue2');
+        const resultsContainer = document.getElementById('resultsContainer');
+
+        // Start the quiz from welcome screen
+        function startQuiz() {
+            welcomeScreen.style.display = 'none';
+            quizHeader.style.display = 'none';
+            quizFooter.style.display = 'none';
+            progressContainer.style.display = 'block';
+            quizContent.style.display = 'flex';
+            renderQuestion();
+            updateProgress();
+        }
+
+        // Initialize the quiz
+        function initQuiz() {
+            // Add event listeners for continue buttons
+            continue1.addEventListener('click', () => {
+                interrupt1.classList.remove('active');
+                currentQuestionIndex = 4; // Go to question 5 (index 4)
+                renderQuestion();
+            });
+            
+            continue2.addEventListener('click', () => {
+                interrupt2.classList.remove('active');
+                currentQuestionIndex = 8; // Go to question 9 (index 8)
+                renderQuestion();
+            });
+
+            // Email capture
+            submitEmail.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const email = emailInput.value.trim();
+                console.log('Email submitted:', email);
+                
+                if (!email || !email.includes('@') || !email.includes('.')) {
+                    alert('Please enter a valid email address (e.g., yourname@email.com)');
+                    return;
+                }
+                
+                userEmail = email;
+                console.log('Hiding email capture, showing loading screen');
+                
+                emailCapture.classList.remove('active');
+                loadingScreen.classList.add('active');
+                
+                console.log('Starting answer review animation');
+                animateAnswerReview();
+            });
+            
+            // Also handle Enter key in email input
+            emailInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    submitEmail.click();
+                }
+            });
+        }
+
+        // Render the current question
+        function renderQuestion() {
+            // Hide all interrupts and loading screen
+            interrupt1.classList.remove('active');
+            interrupt2.classList.remove('active');
+            emailCapture.classList.remove('active');
+            loadingScreen.classList.remove('active');
+            
+            // Clear previous content
+            questionContainer.innerHTML = '';
+            
+            // Create question container
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question-container active';
+            questionDiv.id = `question-${currentQuestionIndex}`;
+            
+            // Question text
+            const questionText = document.createElement('div');
+            questionText.className = 'question-text';
+            questionText.textContent = quizData[currentQuestionIndex].question;
+            questionDiv.appendChild(questionText);
+            
+            // Options container
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'options-container';
+            
+            // Add options
+            quizData[currentQuestionIndex].options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = `option ${userAnswers[currentQuestionIndex] === index ? 'selected' : ''}`;
+                optionDiv.dataset.index = index;
+                
+                const optionText = document.createElement('div');
+                optionText.className = 'option-text';
+                optionText.textContent = option.text;
+                
+                const checkmark = document.createElement('div');
+                checkmark.className = 'option-checkmark';
+                checkmark.innerHTML = '✓';
+                
+                optionDiv.appendChild(optionText);
+                optionDiv.appendChild(checkmark);
+                optionsContainer.appendChild(optionDiv);
+                
+                // Add click event to select option
+                optionDiv.addEventListener('click', () => {
+                    // Deselect all options
+                    document.querySelectorAll(`#question-${currentQuestionIndex} .option`).forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Select clicked option
+                    optionDiv.classList.add('selected');
+                    userAnswers[currentQuestionIndex] = index;
+                });
+            });
+            
+            questionDiv.appendChild(optionsContainer);
+            
+            // Navigation buttons
+            const buttonsDiv = document.createElement('div');
+            buttonsDiv.className = 'buttons';
+            
+            const nextButton = document.createElement('button');
+            nextButton.className = 'btn btn-next';
+            nextButton.innerHTML = currentQuestionIndex === totalQuestions - 1 
+                ? 'See Results <i class="fas fa-arrow-right"></i>' 
+                : 'Continue <i class="fas fa-arrow-right"></i>';
+            
+            buttonsDiv.appendChild(nextButton);
+            questionDiv.appendChild(buttonsDiv);
+            
+            // Add event listener
+            nextButton.addEventListener('click', () => {
+                if (userAnswers[currentQuestionIndex] === null) {
+                    alert('Please select an answer before continuing.');
+                    return;
+                }
+                
+                // Add points to score
+                const selectedOptionIndex = userAnswers[currentQuestionIndex];
+                totalScore += quizData[currentQuestionIndex].options[selectedOptionIndex].points;
+                
+                // Check for pattern interrupts
+                if (currentQuestionIndex === 2) { // After question 3 (index 2)
+                    questionDiv.classList.remove('active');
+                    interrupt1.classList.add('active');
+                    return;
+                } else if (currentQuestionIndex === 6) { // After question 7 (index 6)
+                    questionDiv.classList.remove('active');
+                    interrupt2.classList.add('active');
+                    return;
+                } else if (currentQuestionIndex === totalQuestions - 1) { // Last question
+                    // Show email capture
+                    questionDiv.classList.remove('active');
+                    emailCapture.classList.add('active');
+                    return;
+                }
+                
+                // Move to next question
+                currentQuestionIndex++;
+                renderQuestion();
+            });
+            
+            questionContainer.appendChild(questionDiv);
+            updateProgress();
+        }
+
+        // Animate answer review with progress bar - only show 6 crucial questions
+        function animateAnswerReview() {
+            try {
+                console.log('animateAnswerReview started');
+                
+                if (!answerReview || !loadingProgress) {
+                    console.error('Required elements not found:', { answerReview, loadingProgress });
+                    showResults();
+                    return;
+                }
+                
+                answerReview.innerHTML = '';
+                loadingProgress.style.width = '0%';
+                
+                // Select 6 most crucial questions for self-diagnosis
+                const crucialQuestions = [0, 3, 4, 6, 8, 11];
+                let currentIndex = 0;
+                const totalItems = crucialQuestions.length;
+                
+                function showNextAnswer() {
+                    try {
+                        if (currentIndex >= totalItems) {
+                            console.log('All answers shown, showing results in 1.5s');
+                            setTimeout(showResults, 1500);
+                            return;
+                        }
+                        
+                        const questionIndex = crucialQuestions[currentIndex];
+                        const question = quizData[questionIndex];
+                        const answerIndex = userAnswers[questionIndex];
+                        
+                        if (!question || answerIndex === null || answerIndex === undefined) {
+                            console.error('Missing question or answer:', { questionIndex, answerIndex, userAnswers });
+                            currentIndex++;
+                            setTimeout(showNextAnswer, 600);
+                            return;
+                        }
+                        
+                        const answer = question.options[answerIndex];
+                        
+                        // Create review item
+                        const reviewItem = document.createElement('div');
+                        reviewItem.className = 'review-item';
+                        reviewItem.innerHTML = `
+                            <div class="review-question">Q${questionIndex + 1}: ${question.question}</div>
+                            <div class="review-answer">${answer.text}</div>
+                        `;
+                        
+                        answerReview.appendChild(reviewItem);
+                        answerReview.scrollTop = answerReview.scrollHeight;
+                        
+                        // Trigger animation
+                        setTimeout(() => {
+                            reviewItem.classList.add('visible');
+                        }, 50);
+                        
+                        // Update progress bar
+                        const progressPercentage = ((currentIndex + 1) / totalItems) * 100;
+                        loadingProgress.style.width = `${progressPercentage}%`;
+                        
+                        currentIndex++;
+                        
+                        // Show next answer after delay
+                        setTimeout(showNextAnswer, 600);
+                    } catch (error) {
+                        console.error('Error in showNextAnswer:', error);
+                        setTimeout(showResults, 1000);
+                    }
+                }
+                
+                // Start showing answers
+                console.log('Starting to show answers');
+                showNextAnswer();
+            } catch (error) {
+                console.error('Error in animateAnswerReview:', error);
+                showResults();
+            }
+        }
+
+        // Update progress bar and text
+        function updateProgress() {
+            const progressPercentage = ((currentQuestionIndex + 1) / totalQuestions) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+            progressText.textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions}`;
+        }
+
+        // Show results based on score
+        function showResults() {
+            try {
+                console.log('showResults called, totalScore:', totalScore);
+                
+                if (loadingScreen) loadingScreen.classList.remove('active');
+                if (progressContainer) progressContainer.style.display = 'none';
+                if (quizContent) quizContent.style.display = 'none';
+                if (quizHeader) quizHeader.style.display = 'none';
+                if (quizFooter) quizFooter.style.display = 'none';
+                
+                // Determine the path
+                let path, pathTitle, pathDescription, offerPrice, offerTitle, offerFeatures, whopLink, otoHTML;
+                
+                if (totalScore >= 100) {
+                    // Beginner Path
+                    path = 'Beginner';
+                    pathTitle = 'The Beginner Blueprint';
+                    pathDescription = "You haven't made the expensive mistakes yet. That's your biggest advantage.";
+                    offerPrice = '$37';
+                    offerTitle = 'The 7-Day Validation Sprint';
+                    whopLink = whopLinks.beginner;
+                    
+                    offerFeatures = [
+                        'The Complete Validation Framework — Never build without buyers again',
+                        '47 Plug-and-Play Templates — Email scripts, landing pages, validation surveys',
+                        '"Pre-Sell Before You Build" Scripts — Convert at 15%+ (industry average is 2%)',
+                        'The "$1K in 7 Days" Checklist — Exactly what to do each day (no guessing)',
+                        'Private Community Access — Accountability from people on the same journey'
+                    ];
+                    
+                    // Beginner OTO
+                    otoHTML = generateBeginnerOTO();
+                    
+                } else if (totalScore >= 50) {
+                    // Warm Path
+                    path = 'Warm';
+                    pathTitle = 'The Growth Accelerator';
+                    pathDescription = "You've got traction. Now you need the distribution system.";
+                    offerPrice = '$97';
+                    offerTitle = 'The Traffic & Distribution Roadmap';
+                    whopLink = whopLinks.warm;
+                    
+                    offerFeatures = [
+                        'The "Evergreen Traffic Engine" — Set it up once, run forever',
+                        'Content Distribution System — Reach 100K+ without paid ads',
+                        'Email Automation Sequences — Convert at 5-8% on autopilot',
+                        'The "Distribution First" Content Calendar — Never wonder what to post',
+                        'Partnership Outreach Scripts — Get featured, get traffic, get sales'
+                    ];
+                    
+                    // Warm OTO
+                    otoHTML = generateWarmOTO();
+                    
+                } else {
+                    // Advanced Path
+                    path = 'Advanced';
+                    pathTitle = 'The Scaling System';
+                    pathDescription = "You're in the game. Time to build the machine that scales.";
+                    offerPrice = '$997';
+                    offerTitle = 'The 90-Day Mentorship Intensive';
+                    whopLink = whopLinks.advanced;
+                    
+                    offerFeatures = [
+                        'Weekly 1-on-1 Strategy Calls — 12 total sessions, personalized to YOUR business',
+                        'Custom Scaling Roadmap — Built specifically for where you are now',
+                        'Direct Access Via Private Slack — Get answers when you need them',
+                        'Complete Funnel Audit & Optimization — Fix the leaks, maximize conversions',
+                        'Partnership & JV Introduction Network — Connect with other 6-7 figure creators',
+                        'Team Building & Automation Templates — Scale without working more hours'
+                    ];
+                    
+                    // Advanced OTO
+                    otoHTML = generateAdvancedOTO();
+                }
+                
+                // Determine personalized bridge content based on path
+                let desiredOutcome;
+                if (totalScore >= 100) {
+                    desiredOutcome = "You've validated your first idea with confidence. You know exactly what people want to buy—not what you think they want, but what they're actually desperate for. You have real responses from real buyers. Your validation campaign is working. You're not guessing anymore. You have proof. Now you're building something you know will sell.";
+                } else if (totalScore >= 50) {
+                    desiredOutcome = "Your traffic system is humming. Every day, new people discover your offers. Your email list grows while you sleep. Sales notifications hit your inbox at 7 AM before you've even had coffee. No more wondering where your next customer will come from. No more posting into the void. Just consistent, predictable revenue flowing in.";
+                } else {
+                    desiredOutcome = "Your business runs without you. Systems handle the day-to-day. Your team executes while you focus on strategy and vision. Revenue hit six figures—and it's still climbing. You work 20 hours a week on the business, not 60 hours in the business. You have leverage. You have freedom. You built the machine.";
+                }
+
+                // Build results HTML
+                const resultsHTML = `
+                    <!-- Results Header -->
+                    <div class="results-header">
+                        <div class="results-badge">✓ Quiz Complete</div>
+                        <h1 class="results-title">
+                            Your Path:<br>
+                            <span class="results-title-accent">${pathTitle}</span>
+                        </h1>
+                        <div class="results-divider"></div>
+                        <p class="results-description">${pathDescription}</p>
+                        <div class="path-badge">${path} Path</div>
+                    </div>
+                    
+                    <!-- Main Offer -->
+                    <div class="offer-container">
+                        <div class="offer-badge">Recommended for you</div>
+                        
+                        <div class="offer-header">
+                            <h2 class="offer-title">${offerTitle}</h2>
+                            <p class="offer-subtitle">${totalScore >= 100 ? 'Get your first paying customers in 7 days' : totalScore >= 50 ? 'Automated traffic & sales on autopilot' : 'Scale to 6-7 figures with systems'}</p>
+                        </div>
+                        
+                        <div class="price-block">
+                            <div class="price-original">Usually ${totalScore >= 100 ? '$127' : totalScore >= 50 ? '$297' : '$2,500'}</div>
+                            <div class="price-current">${offerPrice}</div>
+                            <div class="price-savings">Save ${totalScore >= 100 ? '$90' : totalScore >= 50 ? '$200' : '$1,503'} today</div>
+                            <div class="price-note">One-time payment • Instant access</div>
+                        </div>
+                        
+                        <ul class="offer-features">
+                            ${offerFeatures.map(feature => {
+                                const [title, desc] = feature.split(' — ');
+                                return `
+                                    <li>
+                                        <i class="fas fa-check-circle"></i>
+                                        <div>
+                                            <span class="feature-title">${title}</span>
+                                            <span class="feature-desc">${desc}</span>
+                                        </div>
+                                    </li>
+                                `;
+                            }).join('')}
+                        </ul>
+                        
+                        <div class="guarantee-box">
+                            <div class="guarantee-title">🛡️ 30-Day "Results or Refund" Guarantee</div>
+                            <div class="guarantee-text">
+                                ${totalScore >= 100 ? 'Follow the system for 30 days. If you don\'t get at least <strong>ONE validated sale</strong>, I\'ll refund every penny + send you $50 for wasting your time.' : totalScore >= 50 ? 'Implement the traffic system for 30 days. If you don\'t see measurable growth, I\'ll refund 100% + $100 for your trouble.' : 'Work with me for 90 days. If we don\'t create a clear scaling roadmap with at least <strong>$10K in improvements</strong>, I\'ll refund every penny.'}
+                            </div>
+                        </div>
+                        
+                        <a href="${whopLink}" class="btn-buy">
+                            Get ${offerTitle} — ${offerPrice}
+                        </a>
+                        
+                        <div class="trust-row">
+                            <span class="trust-item">🔒 Secure checkout</span>
+                            <span class="trust-item">✓ Instant access</span>
+                            <span class="trust-item">💳 Money-back guarantee</span>
+                        </div>
+                        
+                        <div class="ps-section">
+                            <p class="ps-text"><span class="ps-highlight">P.S.</span> Remember: Sarah wasted 3 months building something nobody wanted.</p>
+                            <p class="ps-text">The difference between her "before" and "after"? <strong>She validated FIRST.</strong></p>
+                            <p class="ps-text">You're 60 seconds away from the same breakthrough. But only if you stop waiting.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Proof -->
+                    <div class="social-proof">
+                        <h3 class="social-title">What Others Are Saying</h3>
+                        <div class="testimonials" style="display: flex; gap: 15px; margin-bottom: var(--space-5);">
+                            <div class="testimonial" style="flex: 1;">
+                                <p class="testimonial-text">"I was stuck for 6 months building products nobody wanted. The validation method changed everything—first $1K month within 30 days!"</p>
+                                <p class="testimonial-author">— Sarah M.</p>
+                            </div>
+                            <div class="testimonial" style="flex: 1;">
+                                <p class="testimonial-text">"Finally a system that actually works. No more guessing, no more wasted time. My traffic tripled in 3 weeks."</p>
+                                <p class="testimonial-author">— Jason K.</p>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <a href="website-template.html#proof" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: var(--space-4) var(--space-6); background: var(--color-primary); color: var(--color-white); border-radius: var(--radius-full); font-size: 0.9375rem; font-weight: 600; text-decoration: none; transition: all 0.2s; box-shadow: var(--shadow-md);">
+                                See More Success Stories <span style="font-size: 1.2em; color: var(--color-white);">→</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- OTO Section -->
+                    ${otoHTML}
+                    
+                    <!-- Bridge Section - Picture This -->
+                    <div class="offer-container" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #bae6fd;">
+                        <div style="text-align: center; margin-bottom: var(--space-6);">
+                            <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: var(--space-2);">Picture This: 30 Days From Now</h2>
+                        </div>
+                        
+                        <div style="background: var(--color-white); border-radius: var(--radius-xl); padding: var(--space-6); margin-bottom: var(--space-6); box-shadow: var(--shadow-sm);">
+                            <p style="font-size: 1.0625rem; color: var(--color-text-secondary); line-height: var(--line-height-relaxed); margin: 0;">${desiredOutcome}</p>
+                        </div>
+                        
+                        <a href="${whopLink}" class="btn-buy" style="font-size: 1.125rem; padding: var(--space-5) var(--space-6); margin-bottom: var(--space-3);">
+                            🔒 Lock It In — ${offerPrice}
+                        </a>
+                        
+                        <p style="text-align: center; font-size: 0.8125rem; color: var(--color-text-muted); margin: 0;">🔒 Secure checkout • ✓ Instant access • 💳 Money-back guarantee</p>
+                    </div>
+                `;
+                
+                resultsContainer.innerHTML = resultsHTML;
+                resultsContainer.classList.add('active');
+                
+                // Initialize countdown timer if it exists
+                setTimeout(() => {
+                    const countdownEl = document.getElementById('countdownTimer');
+                    const countdownEl2 = document.getElementById('countdownTimer2');
+                    const countdownEl3 = document.getElementById('countdownTimer3');
+                    if (countdownEl) startCountdown(countdownEl);
+                    if (countdownEl2) startCountdown(countdownEl2);
+                    if (countdownEl3) startCountdown(countdownEl3);
+                }, 100);
+                
+                console.log('Results displayed successfully for path:', path);
+                
+            } catch (error) {
+                console.error('Error in showResults:', error);
+                resultsContainer.innerHTML = '<p style="text-align: center; padding: 40px;">There was an error displaying your results. Please refresh the page and try again.</p>';
+                resultsContainer.classList.add('active');
+            }
+        }
+
+        // Generate Beginner OTO HTML - ESSENTIAL VERSION
+        function generateBeginnerOTO() {
+            return `
+                <div class="offer-container oto-container">
+                    <div class="offer-badge oto-badge">⚡ One-Time Offer</div>
+                    
+                    <div class="oto-header">
+                        <div class="oto-title">WAIT — Before You Go...</div>
+                        <h3 class="oto-headline">Don't Waste 7 Days Validating The Wrong Way</h3>
+                    </div>
+                    
+                    <!-- Two Mistakes -->
+                    <div style="background: #fef2f2; border-left: 4px solid #dc2626; padding: var(--space-5); margin: var(--space-6) 0; border-radius: 0 var(--radius-lg) var(--radius-lg) 0;">
+                        <h4 style="font-size: 1rem; font-weight: 700; color: #991b1b; margin-bottom: var(--space-4);">Two Mistakes That Kill Beginner Validations:</h4>
+                        
+                        <div style="margin-bottom: var(--space-4);">
+                            <p style="font-weight: 700; color: #7f1d1d; margin-bottom: var(--space-2);">1. Weak Offer Angle</p>
+                            <p style="font-size: 0.9375rem; color: #991b1b; line-height: var(--line-height-relaxed);">You write "Would you buy my course?" — Nobody responds. You quit.<br><strong>Reality:</strong> Boring angle. You needed "Stop wasting 3 hours daily on busywork."</p>
+                        </div>
+                        
+                        <div>
+                            <p style="font-weight: 700; color: #7f1d1d; margin-bottom: var(--space-2);">2. Misreading Your Data</p>
+                            <p style="font-size: 0.9375rem; color: #991b1b; line-height: var(--line-height-relaxed);">You get 6 "yes" responses from 47 people. Think it failed.<br><strong>Reality:</strong> 12.7% interest = validated demand. You just didn't know.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- What The Guided Package Adds -->
+                    <h4 style="font-size: 1.125rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: var(--space-4); text-align: center;">What The Guided Package Adds:</h4>
+                    
+                    <div class="feature-grid" style="margin-bottom: var(--space-6);">
+                        <div class="feature-card">
+                            <div class="feature-card-title">✓ <span>7-Day Telegram Support</span></div>
+                            <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--space-2);">Expert feedback before you launch. Fix mistakes early.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-title">✓ <span>Offer Angle Generator</span></div>
+                            <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--space-2);">7 proven frameworks. Fill-in-the-blank. Test. Pick winner.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-title">✓ <span>Response Rate Calculator</span></div>
+                            <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin-top: var(--space-2);">Know if your 8% is validated or garbage. Benchmark tool.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Without It vs With It -->
+                    <div style="display: grid; gap: var(--space-4); margin: var(--space-6) 0;">
+                        <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: var(--radius-lg); padding: var(--space-4);">
+                            <p style="font-weight: 700; color: #991b1b; margin-bottom: var(--space-2);">❌ Without It:</p>
+                            <p style="font-size: 0.9375rem; color: #7f1d1d; margin: 0;">Weak angle → 4% interest → Think it failed → Quit winner</p>
+                        </div>
+                        
+                        <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: var(--radius-lg); padding: var(--space-4);">
+                            <p style="font-weight: 700; color: #065f46; margin-bottom: var(--space-2);">✅ With It:</p>
+                            <p style="font-size: 0.9375rem; color: #047857; margin: 0;">Get feedback → Fix angle → 18% interest → Know it's validated → Build</p>
+                        </div>
+                    </div>
+                    
+                    <!-- The Math -->
+                    <div style="background: var(--color-text-primary); color: var(--color-white); border-radius: var(--radius-xl); padding: var(--space-5); margin: var(--space-6) 0; text-align: center;">
+                        <div style="display: flex; justify-content: space-around; margin-bottom: var(--space-3);">
+                            <div>
+                                <p style="font-size: 0.75rem; opacity: 0.8; margin-bottom: var(--space-1);">TOTAL VALUE</p>
+                                <p style="font-size: 1.25rem; font-weight: 700;">$318</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.75rem; opacity: 0.8; margin-bottom: var(--space-1);">YOUR PRICE</p>
+                                <p style="font-size: 1.25rem; font-weight: 700; color: #a5f3fc;">+$47</p>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.75rem; opacity: 0.8; margin-bottom: var(--space-1);">YOU SAVE</p>
+                                <p style="font-size: 1.25rem; font-weight: 700; color: #a5f3fc;">$271</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Scarcity -->
+                    <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 1px solid #f59e0b; border-radius: var(--radius-xl); padding: var(--space-5); margin: var(--space-6) 0; text-align: center;">
+                        <p style="font-size: 0.875rem; font-weight: 700; color: #92400e; margin-bottom: var(--space-2); text-transform: uppercase; letter-spacing: 0.05em;">⚡ Introductory Pricing</p>
+                        <p style="font-size: 1rem; color: #78350f; margin-bottom: var(--space-2);"><strong>Only for the first 15 people</strong> — we're gathering testimonials</p>
+                        <p style="font-size: 0.9375rem; color: #92400e; margin: 0;">After 15 people: Price increases to <strong>$57</strong></p>
+                    </div>
+                    
+                    <!-- CTA -->
+                    <a href="${whopLinks.otoBeginner}" class="btn-buy oto-cta" style="font-size: 1.25rem; padding: var(--space-5) var(--space-6); margin-bottom: var(--space-4);">
+                        🔒 Lock It In — $47
+                    </a>
+                    
+                    <!-- Guarantee -->
+                    <div class="guarantee-box" style="margin-top: var(--space-5); background: #ecfdf5; border-color: #10b981;">
+                        <div class="guarantee-title" style="color: #065f46;">⚡ "Better Results or It's Free"</div>
+                        <div class="guarantee-text" style="color: #047857; font-size: 0.9375rem;">
+                            Guarantee: Better results or full refund. Keep the tools.
+                        </div>
+                    </div>
+                    
+                    <!-- Decline -->
+                    <a href="${whopLinks.beginner}" class="decline-link" style="margin-top: var(--space-5);">
+                        No thanks, I'll guess and hope I don't waste 7 days
+                    </a>
+                </div>
+            `;
+            }
+
+        // Generate Warm OTO HTML
+        function generateWarmOTO() {
+            return `
+                <div class="offer-container oto-container">
+                    <div class="offer-badge oto-badge">⚡ One-Time Offer</div>
+                    
+                    <div class="oto-header">
+                        <div class="oto-title">WAIT — Before You Go...</div>
+                        <h3 class="oto-headline">Live Traffic in 7 Days</h3>
+                        <div class="oto-subtitle">Instead of 30</div>
+                    </div>
+                    
+                    <p style="text-align: center; color: var(--color-text-secondary); margin-bottom: var(--space-6); line-height: var(--line-height-relaxed);">
+                        You're getting the Traffic Roadmap. <strong style="color: var(--color-text-primary);">But what if you had live traffic this week?</strong>
+                    </p>
+                    
+                    <div class="comparison-table">
+                        <div class="comparison-header">DIY vs. Done-WITH-You</div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Main Offer ($97)</span>
+                            <span class="comparison-value">DIY over 30 days</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Fast-Track (+$50)</span>
+                            <span class="comparison-value highlight">Done-with-you in 7 days</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-card-title">✓ <span>3 Done-for-you ad campaigns</span> ready to launch</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-title">✓ <span>Email sequences</span> pre-written for your niche</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-title">✓ <span>60-min strategy call</span> where I set up your traffic LIVE</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-title">✓ <span>AI content generator</span> access</div>
+                        </div>
+                    </div>
+                    
+                    <div class="countdown-container">
+                        <div class="countdown-label">⚠️ This Offer Expires In</div>
+                        <div class="countdown-timer" id="countdownTimer2">15:00</div>
+                        <div class="countdown-note">
+                            <strong>Only 5 campaign slots remaining.</strong><br>
+                            After that, this becomes a $497 standalone product.
+                        </div>
+                    </div>
+                    
+                    <div class="price-block oto-price-block">
+                        <div class="price-original">Normally $497 for done-for-you campaigns</div>
+                        <div class="price-current oto-price">+$50</div>
+                        <div class="price-savings">Just $50 more than the main offer</div>
+                        <div class="price-note">Save $350 + 30 days of work</div>
+                    </div>
+                    
+                    <a href="${whopLinks.otoWarm}" class="btn-buy oto-cta">
+                        ⚡ Yes, Add 7-Day Traffic Accelerator
+                    </a>
+                    
+                    <div class="guarantee-box" style="margin-top: var(--space-5);">
+                        <div class="guarantee-title">⚡ "Traffic in 7 Days or It's Free"</div>
+                        <div class="guarantee-text">If we don't have live traffic flowing within 7 days, I'll refund the $50 <strong>(and you keep all campaigns)</strong></div>
+                    </div>
+                    
+                    <a href="${whopLinks.warm}" class="decline-link">
+                        No thanks, I'll build it myself over 30 days
+                    </a>
+                </div>
+            `;
+        }
+
+        // Generate Advanced OTO HTML
+        function generateAdvancedOTO() {
+            return `
+                <div class="offer-container oto-container">
+                    <div class="offer-badge oto-badge">⚡ One-Time Offer</div>
+                    
+                    <div class="oto-header">
+                        <div class="oto-title">WAIT — Before You Go...</div>
+                        <h3 class="oto-headline">Transform in One Day</h3>
+                        <div class="oto-subtitle">Instead of 90 days</div>
+                    </div>
+                    
+                    <p style="text-align: center; color: var(--color-text-secondary); margin-bottom: var(--space-6); line-height: var(--line-height-relaxed);">
+                        You're getting 90-day mentorship. <strong style="color: var(--color-text-primary);">But what if we mapped everything in one day?</strong>
+                    </p>
+                    
+                    <div class="comparison-table">
+                        <div class="comparison-header">Gradual vs. Intensive</div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Main Offer ($997)</span>
+                            <span class="comparison-value">90 days gradual</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">VIP Intensive (+$497)</span>
+                            <span class="comparison-value highlight">One intensive day</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-card-title">✓ <span>Full-day intensive</span> (6 hours) 1-on-1</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-title">✓ <span>AI-powered funnel audit</span> (uncover conversion killers)</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-title">✓ <span>Complete scaling roadmap</span> customized for you</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-card-title">✓ <span>2 weeks follow-up</span> support</div>
+                        </div>
+                    </div>
+                    
+                    <div class="countdown-container">
+                        <div class="countdown-label">⚠️ This Offer Expires In</div>
+                        <div class="countdown-timer" id="countdownTimer3">15:00</div>
+                        <div class="countdown-note">
+                            <strong>Only 3 VIP slots remaining</strong> this month.<br>
+                            After that, my standard VIP day is $2,500.
+                        </div>
+                    </div>
+                    
+                    <div class="price-block oto-price-block">
+                        <div class="price-original">Standard VIP day: <span style="text-decoration: line-through;">$2,500</span></div>
+                        <div class="price-current oto-price">+$497</div>
+                        <div class="price-savings">Add to your 90-day mentorship</div>
+                        <div class="price-note">Save $2,003 vs. regular VIP day</div>
+                    </div>
+                    
+                    <a href="${whopLinks.otoAdvanced}" class="btn-buy oto-cta">
+                        ⚡ Yes, Add VIP Intensive Day
+                    </a>
+                    
+                    <div class="guarantee-box" style="margin-top: var(--space-5);">
+                        <div class="guarantee-title">⚡ "$10K Value or It's Free"</div>
+                        <div class="guarantee-text">If the VIP day doesn't deliver $10K+ in strategy and improvements, <strong>I'll refund $497 completely</strong></div>
+                    </div>
+                    
+                    <a href="${whopLinks.advanced}" class="decline-link">
+                        No thanks, I'll take the 90-day mentorship
+                    </a>
+                </div>
+            `;
+        }
+
+        // Countdown timer function
+        function startCountdown(element) {
+            let timeLeft = 15 * 60; // 15 minutes in seconds
+            
+            function updateTimer() {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                element.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    setTimeout(updateTimer, 1000);
+                } else {
+                    element.textContent = "EXPIRED";
+                    element.style.color = "#6b7280";
+                }
+            }
+            
+            updateTimer();
+        }
+
+        // Initialize quiz when DOM is ready
+        document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>
